@@ -27,3 +27,5 @@ assert parses("String codeSample = '; doNotGetConfused(); class { this.IsAllFine
 # multi-line
 # not legal in apex, but we'll hoover it up anyway
 
+assert parses("String theArticle = 'Four score and\nSeven years ago,\nOur forefathers set forth...';"),
+  'even though apex disallows multi-line strings, we will parse them'
