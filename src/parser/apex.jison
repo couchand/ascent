@@ -20,6 +20,8 @@ class_header
 class_descriptor
  : class_visibility
    { $$ = $class_visibility; }
+ | class_visibility class_modifiers
+   { $$ = $class_modifiers; $$.unshift( $class_visibility ); }
  ;
 
 class_visibility
@@ -32,8 +34,21 @@ class_visibility
  ;
 
 class_modifiers
- :
-   { $$ = []; }
+ : class_modifier
+   { $$ = [$class_modifier]; }
+ | class_modifiers class_modifier
+   { $$ = $class_modifiers; $$.push( $class_modifier ); }
+ ;
+
+class_modifier
+ : VIRTUAL
+   { $$ = 'virtual'; }
+ | ABSTRACT
+   { $$ = 'abstract'; }
+ | WITHSHARING
+   { $$ = 'with sharing'; }
+ | WITHOUTSHARING
+   { $$ = 'without sharing'; }
  ;
 
 implements
