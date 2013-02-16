@@ -119,15 +119,15 @@ class_members
 
 class_member
  : inner_cls
-   { $$ = $inner_cls; $$.inner_class = true; }
+   { $$ = $inner_cls; $$.member = 'inner_class'; }
  | method
-   { $$ = $method; $$.method = true; }
+   { $$ = $method; $$.member = 'method'; }
  | property
-   { $$ = $property; $$.property = true; }
+   { $$ = $property; $$.member = 'property'; }
  | instance_initializer
-   { $$ = $instance_initializer; $$.instance_initializer = true; }
+   { $$ = $instance_initializer; $$.member = 'instance_initializer'; }
  | static_initializer
-   { $$ = $static_initializer; $$.static_initializer = true; }
+   { $$ = $static_initializer; $$.member = 'static_initializer'; }
  ;
 
 method
