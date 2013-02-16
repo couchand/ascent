@@ -2,6 +2,8 @@ digit                   [0-9]
 id                      [a-zA-Z][a-zA-Z0-9_]*
 
 %%
+"//".*                  /* ignore comment */
+"/*"(\n|.)*"*/"         /* ignore block comment */
 "public"                return 'PUBLIC';
 "private"               return 'PRIVATE';
 "global"                return 'GLOBAL';
