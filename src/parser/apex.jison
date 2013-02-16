@@ -60,6 +60,10 @@ modifier
    { $$ = 'without sharing'; }
  | OVERRIDE
    { $$ = 'override'; }
+ | STATIC
+   { $$ = 'static'; }
+ | FINAL
+   { $$ = 'final'; }
  ;
 
 class_taxonomy
@@ -146,6 +150,13 @@ method_body
  ;
 
 property
+ : modifiers declaration
+   { $$ = [$declaration, $modifiers]; }
+ | declaration
+   { $$ = [$declaration, []]; }
+ ;
+
+declaration
  : identifier identifier ';'
    { $$ = [$identifier1, $identifier2]; }
  | identifier identifier '=' value ';'

@@ -11,6 +11,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "abstract"              return 'ABSTRACT';
 "virtual"               return 'VIRTUAL';
 "override"              return 'OVERRIDE';
+"static"                return 'STATIC';
+"final"                 return 'FINAL';
 "with"\s+"sharing"      return 'WITHSHARING';
 "without"\s+"sharing"   return 'WITHOUTSHARING';
 "class"                 return 'CLASS';
