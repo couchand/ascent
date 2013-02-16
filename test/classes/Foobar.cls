@@ -15,7 +15,8 @@ class Foobar
     public static final Integer PI = 3;
     public static Integer theInformation;
 
-    public String myName = 'Dr. Bashir';
+    public String myName = 'Dr. Bashir\\'; // said 'hi'
+    public String myFavoriteBook = '\'Crime and Punishment\'';
 
     {
         // no content for now

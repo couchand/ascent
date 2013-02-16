@@ -4,7 +4,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 %%
 "//".*                  /* ignore comment */
 "/*"(\n|.)*"*/"         /* ignore block comment */
-"'"(\n|[^'])*"'"        return 'STRLITERAL';
+"'"(\\\')?(\n|[^\\]\\\'|[^'])*"'"   return 'STRLITERAL';
 "public"                return 'PUBLIC';
 "private"               return 'PRIVATE';
 "protected"             return 'PROTECTED';
