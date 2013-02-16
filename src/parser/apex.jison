@@ -81,25 +81,15 @@ implements
  ;
 
 interface_names
- : interface_name
-   { $$ = [$interface_name]; }
- | interface_names ',' interface_name
-   { $$ = $interface_names; $$.push($interface_name); }
- ;
-
-interface_name
- : IDENTIFIER
-   { $$ = yytext; }
+ : identifier
+   { $$ = [$identifier]; }
+ | interface_names ',' identifier
+   { $$ = $interface_names; $$.push($identifier); }
  ;
 
 extends
- : EXTENDS base_class
-   { $$ = [$base_class]; }
- ;
-
-base_class
- : IDENTIFIER
-   { $$ = yytext; }
+ : EXTENDS identifier
+   { $$ = [$identifier]; }
  ;
 
 class_body
@@ -134,11 +124,6 @@ method
    { $$ = [$identifier, $identifier, [], $parameters, $method_body]; }
  ;
 
-method_name
- : identifier
-   { $$ = $identifier; }
- ;
-
 parameters
  :
    { $$ = []; }
@@ -149,18 +134,13 @@ parameters
  ;
 
 parameter
- : type identifier
-   { $$ = [$type, $identifier]; }
+ : identifier identifier
+   { $$ = [$identifier1, $identifier2]; }
  ;
 
 method_body
  : '{' '}'
    { $$ = []; }
- ;
-
-type
- : identifier
-   { $$ = $identifier; }
  ;
 
 identifier
