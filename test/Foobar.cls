@@ -1,3 +1,3 @@
-class Foobar
+public class Foobar
 {
 }

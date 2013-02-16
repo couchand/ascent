@@ -18,8 +18,12 @@ class_header
  ;
 
 class_visibility
- :
-   { $$ = []; }
+ : PRIVATE
+   { $$ = 'private'; }
+ | PUBLIC
+   { $$ = 'public'; }
+ | GLOBAL
+   { $$ = 'global'; }
  ;
 
 class_modifiers
