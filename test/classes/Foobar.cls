@@ -11,6 +11,38 @@ class Foobar
   implements Baz, Bo // interfaces implemented
   extends Bar        // base class extended
 {
+    // pi is exactly three.
+    public static final Integer PI = 3;
+
+    public String myName;
+
+    // we can have accesors...
+    public Integer myReadable
+    {
+        get;
+        private set;
+    }
+
+    // and we can customize them
+    public Integer radius
+    {
+        get
+        {
+            // though they can't have content yet
+        }
+    }
+
+    // let's define a method
+    public Integer calculate()
+    {
+        // again, no body
+    }
+
+    virtual private override void helpCalculate( Integer i, Integer j, Integer k )
+    {
+        // it would be nice to do something here
+    }
+
     // now inner classes are supported
     private class MyInnerClass
       extends Bo
