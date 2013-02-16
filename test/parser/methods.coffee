@@ -24,3 +24,9 @@ assert parses('Integer doIt(){}'),
 
 assert parses('protected override void foobar(){}'),
   'method modifiers should parse'
+
+# constructors
+
+assert parses('Foo(){}'), 'constructors should parse'
+assert parses('Foo(Integer i){}'), 'constructor parameters should parse'
+assert parses('private Foo(){}'), 'constructor modifiers should parse'

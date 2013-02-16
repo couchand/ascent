@@ -124,10 +124,14 @@ class_member
  ;
 
 method
- : modifiers type method_name '(' parameters ')' method_body
-   { $$ = [$method_name, $type, $modifiers, $parameters, $method_body]; }
- | type method_name '(' parameters ')' method_body
-   { $$ = [$method_name, $type, [], $parameters, $method_body]; }
+ : modifiers identifier identifier '(' parameters ')' method_body
+   { $$ = [$identifier1, $identifier2, $modifiers, $parameters, $method_body]; }
+ | identifier identifier '(' parameters ')' method_body
+   { $$ = [$identifier1, $identifier2, [], $parameters, $method_body]; }
+ | modifiers identifier '(' parameters ')' method_body
+   { $$ = [$identifier, $identifier, $modifiers, $parameters, $method_body]; }
+ | identifier '(' parameters ')' method_body
+   { $$ = [$identifier, $identifier, [], $parameters, $method_body]; }
  ;
 
 method_name
