@@ -18,8 +18,8 @@ cls
  ;
 
 class_header
- : class_descriptor CLASS identifier class_taxonomy
-   { $$ = [$identifier, $class_descriptor, $class_taxonomy]; }
+ : modifiers CLASS identifier class_taxonomy
+   { $$ = [$identifier, $modifiers, $class_taxonomy]; }
  ;
 
 inner_cls
@@ -28,58 +28,27 @@ inner_cls
  ;
 
 inner_class_header
- : inner_class_descriptor CLASS identifier class_taxonomy
-   { $$ = [$identifier, $inner_class_descriptor, $class_taxonomy]; }
+ : modifiers CLASS identifier class_taxonomy
+   { $$ = [$identifier, $modifiers, $class_taxonomy]; }
+ | CLASS identifier class_taxonomy
+   { $$ = [$identifier, [], $class_taxonomy]; }
  ;
 
-class_descriptor
- : class_visibility
-   { $$ = [$class_visibility, []]; }
- | class_visibility class_modifiers
-   { $$ = [$class_visibility, $class_modifiers]; }
- | class_modifiers class_visibility
-   { $$ = [$class_visibility, $class_modifiers]; }
- | class_modifiers class_visibility class_modifiers
-   { $$ = [$class_visibility, $class_modifiers1]; $$[1].push.apply($$[1], $class_modifiers2); }
+modifiers
+ : modifier
+   { $$ = [$modifier]; }
+ | modifiers modifier
+   { $$ = $modifiers; $$.push( $modifier ); }
  ;
 
-inner_class_descriptor
- :
-   { $$ = [[], []]; }
- | member_visibility
-   { $$ = [$member_visibility]; }
- ;
-
-member_descriptor
- : member_visibility type
-   { $$ = [$type, $member_visibility, []]; }
- ;
-
-class_visibility
+modifier
  : PRIVATE
    { $$ = 'private'; }
  | PUBLIC
    { $$ = 'public'; }
  | GLOBAL
    { $$ = 'global'; }
- ;
-
-member_visibility
- : PRIVATE
-   { $$ = 'private'; }
- | class_visibility
-   { $$ = $class_visibility; }
- ;
-
-class_modifiers
- : class_modifier
-   { $$ = [$class_modifier]; }
- | class_modifiers class_modifier
-   { $$ = $class_modifiers; $$.push( $class_modifier ); }
- ;
-
-class_modifier
- : VIRTUAL
+ | VIRTUAL
    { $$ = 'virtual'; }
  | ABSTRACT
    { $$ = 'abstract'; }

@@ -21,8 +21,6 @@ assert parses('global class Foo {}'),
   'global inner classes should parse fine'
 assert parses('class Foo {}'),
   'visibility keyword is not required for inner classes'
-assert not parses('public private class Foo {}'),
-  'there can be only one visibility keyword'
 
 # other modifiers
 
@@ -50,9 +48,6 @@ assert parses('virtual public with sharing class Foo {}'),
   'the visibility can be between other modifiers'
 assert parses('virtual public abstract class Foo {}'),
   'the visibility can be between other modifiers'
-
-assert not parses('public virtual private class Foo {}'),
-  'there can still be only one visibility keyword'
 
 # implements
 
