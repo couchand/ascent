@@ -77,6 +77,13 @@ interface_name
 extends
  :
    { $$ = []; }
+ | EXTENDS base_class
+   { $$ = [$base_class]; }
+ ;
+
+base_class
+ : IDENTIFIER
+   { $$ = yytext; }
  ;
 
 class_body

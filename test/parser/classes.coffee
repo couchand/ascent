@@ -44,3 +44,8 @@ assert not parses('public virtual private class Foo {}'), 'there can still be on
 assert parses('public class Foo implements Bar {}'), 'implementing an interface should parse'
 assert parses('public class Foo implements Bar, Baz, Serializable {}'), 'implementing multiple interfaces should parse'
 assert not parses('public class Foo implements {}'), 'an interface must be specified to implement'
+
+# extends
+
+assert parses('public class Foo extends Bar {}'), 'extending a base class should parse'
+assert not parses('public class Foo extends Bar, Baz {}'), 'apex does not have multiple inheritance'
