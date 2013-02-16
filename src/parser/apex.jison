@@ -117,11 +117,11 @@ class_members
 
 class_member
  : inner_cls
-   { $$ = { inner_class: $inner_cls }; }
+   { $$ = $inner_cls; $$.inner_class = true; }
  | method
-   { $$ = { method: $method }; }
+   { $$ = $method; $$.method = true; }
  | property
-   { $$ = { property: $property }; }
+   { $$ = $property; $$.property = true; }
  ;
 
 method
