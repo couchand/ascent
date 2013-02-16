@@ -9,7 +9,7 @@
 
 cls
   : class_header class_body EOF
-    { $$ = [$class_header, $class_body]; }
+    { return [$class_header, $class_body]; }
   ;
 
 class_header
@@ -19,13 +19,13 @@ class_header
 
 class_descriptor
  : class_visibility
-   { $$ = $class_visibility; }
+   { $$ = [$class_visibility, []]; }
  | class_visibility class_modifiers
-   { $$ = $class_modifiers; $$.unshift( $class_visibility ); }
+   { $$ = [$class_visibility, $class_modifiers]; }
  | class_modifiers class_visibility
-   { $$ = $class_modifiers; $$.unshift( $class_visibility ); }
+   { $$ = [$class_visibility, $class_modifiers]; }
  | class_modifiers class_visibility class_modifiers
-   { $$ = $class_modifiers1; $$.push.apply($$, $class_modifiers2); $$.unshift( $class_visibility ); }
+   { $$ = [$class_visibility, $class_modifiers1]; $$[1].push.apply($$[1], $class_modifiers2); }
  ;
 
 class_visibility
