@@ -28,3 +28,5 @@ assert parses('Integer myInt { get; set; }'),
   'plain get and set should parse'
 assert parses('Integer myInt { private get; global set; }'),
   'property accessor modifiers should parse'
+assert parses('Integer myInt { get {} set {} }'),
+  'custom property accessors should parse'

@@ -181,6 +181,10 @@ get_or_set
    { $$ = [$identifier, []]; }
  | access_modifier identifier ';'
    { $$ = [$identifier, [$access_modifier]]; }
+ | identifier '{' '}'
+   { $$ = [$identifier, [], []]; }
+ | access_modifier identifier '{' '}'
+   { $$ = [$identifier, [$access_modifier], []]; }
  ;
 
 declaration
