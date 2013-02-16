@@ -146,7 +146,7 @@ parameters
 
 parameter
  : fqn identifier
-   { $$ = { type: $identifier, name: $fqn }; }
+   { $$ = { type: $fqn, name: $identifier }; }
  ;
 
 method_body
