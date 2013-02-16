@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "building parser"
+echo "> jison -o dst/apex.js src/parser/apex.jison src/lexer/apex.jisonlex"
+jison -o dst/apex.js src/parser/apex.jison src/lexer/apex.jisonlex
+echo "patching cli"
+echo "> patch dst/apex.js cli.patch"
+patch dst/apex.js cli.patch
+echo "success!"

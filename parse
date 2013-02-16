@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "parsing $1"
+node dst/apex.js $1
