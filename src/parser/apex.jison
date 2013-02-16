@@ -19,7 +19,7 @@ cls
 
 class_header
  : modifiers CLASS identifier class_taxonomy
-   { $$ = { name: $identifier, modifiers: $modifiers, taxonomy: $class_taxonomy }; }
+   { $$ = { name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
  ;
 
 inner_cls
@@ -29,7 +29,7 @@ inner_cls
 
 inner_class_header
  : modifiers CLASS identifier class_taxonomy
-   { $$ = { name: $identifier, modifiers: $modifiers, taxonomy: $class_taxonomy }; }
+   { $$ = { name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
  | CLASS identifier class_taxonomy
    { $$ = { name: $identifier, modifiers: [], taxonomy: $class_taxonomy }; }
  ;
