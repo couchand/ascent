@@ -13,6 +13,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "override"              return 'OVERRIDE';
 "static"                return 'STATIC';
 "final"                 return 'FINAL';
+"transient"             return 'TRANSIENT';
 "with"\s+"sharing"      return 'WITHSHARING';
 "without"\s+"sharing"   return 'WITHOUTSHARING';
 "class"                 return 'CLASS';

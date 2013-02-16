@@ -19,6 +19,8 @@ assert parses('Integer myInt = 42;'),
   'instance variables with initializers should parse'
 assert parses('private Integer myInt;'),
   'variable modifiers should parse'
+assert parses('transient Integer myInt;'),
+  'variable transient modifiers should parse'
 assert parses('static final Integer PI = 3;'),
   'static properties should parse'
 

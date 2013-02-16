@@ -69,6 +69,8 @@ modifier
    { $$ = 'static'; }
  | FINAL
    { $$ = 'final'; }
+ | TRANSIENT
+   { $$ = 'transient'; }
  ;
 
 class_taxonomy
