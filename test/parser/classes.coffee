@@ -50,5 +50,5 @@ assert not parses('public class Foo implements {}'), 'an interface must be speci
 assert parses('public class Foo extends Bar {}'), 'extending a base class should parse'
 assert not parses('public class Foo extends Bar, Baz {}'), 'apex does not have multiple inheritance'
 
-assert parses('public class Foo implements Bar extends Baz {}'), 'the order of implements and extends does not matter'
+assert parses('public class Foo implements Bar extends Baz {}'), 'the order of implements and extends should not matter'
 assert parses('public class Foo extends Bar implements Baz {}'), 'the order of implements and extends should not matter'
