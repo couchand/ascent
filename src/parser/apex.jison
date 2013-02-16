@@ -228,4 +228,6 @@ identifier
 value
  : INTLITERAL
    { $$ = yytext; }
+ | STRLITERAL
+   { $$ = yytext; }
  ;

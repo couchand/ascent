@@ -7,3 +7,4 @@ coffee test/parser/initializer.coffee
 coffee test/parser/methods.coffee
 coffee test/parser/names.coffee
 coffee test/parser/properties.coffee
+coffee test/parser/strings.coffee
