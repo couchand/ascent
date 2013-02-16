@@ -4,7 +4,7 @@
 public class Methods
 {
     void doIt(){}
-    public Integer doMore( Integer i, Integer j )
+    public override Integer doMore( Integer i, Integer j )
     {
 
     }
