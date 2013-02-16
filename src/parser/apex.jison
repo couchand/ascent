@@ -7,14 +7,29 @@
 
 %%
 
+file
+ : cls EOF
+   { return $cls; }
+ ;
+
 cls
-  : class_header class_body EOF
-    { return [$class_header, $class_body]; }
-  ;
+ : class_header class_body
+   { $$ = [$class_header, $class_body]; }
+ ;
 
 class_header
  : class_descriptor CLASS identifier class_taxonomy
    { $$ = [$identifier, $class_descriptor, $class_taxonomy]; }
+ ;
+
+inner_cls
+ : inner_class_header class_body
+   { $$ = [$inner_class_header, $class_body]; }
+ ;
+
+inner_class_header
+ : inner_class_descriptor CLASS identifier class_taxonomy
+   { $$ = [$identifier, $inner_class_descriptor, $class_taxonomy]; }
  ;
 
 class_descriptor
@@ -26,6 +41,13 @@ class_descriptor
    { $$ = [$class_visibility, $class_modifiers]; }
  | class_modifiers class_visibility class_modifiers
    { $$ = [$class_visibility, $class_modifiers1]; $$[1].push.apply($$[1], $class_modifiers2); }
+ ;
+
+inner_class_descriptor
+ :
+   { $$ = [[], []]; }
+ | class_descriptor
+   { $$ = $class_descriptor; }
  ;
 
 class_visibility
@@ -96,13 +118,22 @@ base_class
  ;
 
 class_body
- : '{' statements '}'
-   { $$ = $statements; }
+ : '{' '}'
+   { $$ = []; }
+ | '{' class_members '}'
+   { $$ = $class_members; }
  ;
 
-statements
- :
-   { $$ = []; }
+class_members
+ : class_member
+   { $$ = [$class_member]; }
+ | class_members class_member
+   { $$ = $class_members; $$.push( $class_member ); }
+ ;
+
+class_member
+ : inner_cls
+   { $$ = $inner_cls; }
  ;
 
 identifier
