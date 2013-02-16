@@ -120,8 +120,10 @@ class_member
  ;
 
 method
- : member_descriptor method_name '(' parameters ')' method_body
-   { $$ = [$method_name, $member_descriptor, $parameters, $method_body]; }
+ : modifiers type method_name '(' parameters ')' method_body
+   { $$ = [$method_name, $type, $modifiers, $parameters, $method_body]; }
+ | type method_name '(' parameters ')' method_body
+   { $$ = [$method_name, $type, [], $parameters, $method_body]; }
  ;
 
 method_name
@@ -132,6 +134,25 @@ method_name
 parameters
  :
    { $$ = []; }
+ | parameter
+   { $$ = [$parameter]; }
+ | parameters ',' parameter
+   { $$ = $parameters; $$.push($parameter); }
+ ;
+
+parameter
+ : type identifier
+   { $$ = [$type, $identifier]; }
+ ;
+
+method_body
+ : '{' '}'
+   { $$ = []; }
+ ;
+
+type
+ : identifier
+   { $$ = $identifier; }
  ;
 
 identifier
