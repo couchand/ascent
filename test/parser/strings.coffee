@@ -40,6 +40,30 @@ assert parses("String lyrics = '#{sample_string}';"),
 assert parses("String lyrics = '#{sample_string}'; // 'This song rocks' - Rolling Stone\n"),
   'quotes later (such as in comments) should not be considered part of the string'
 
+sample_string = "Look at my \\'slashes\\\\\\'"
+assert parses("String lyrics = '#{sample_string}';"),
+  'ending a string with escaped backslashes should parse'
+assert parses("String lyrics = '#{sample_string}'; // 'This song rocks' - Rolling Stone\n"),
+  'quotes later (such as in comments) should not be considered part of the string'
+
+sample_string = "Look at my \\'slashes\\\\\\\\"
+assert parses("String lyrics = '#{sample_string}';"),
+  'ending a string with escaped backslashes should parse'
+assert parses("String lyrics = '#{sample_string}'; // 'This song rocks' - Rolling Stone\n"),
+  'quotes later (such as in comments) should not be considered part of the string'
+
+# this level of escaping is not currently supported.
+# i hope to god you're not trying to deal with string
+# literals with this many slashes at then end followed
+# by a single quote.  if you are, you will just have to
+# replace it with '...\\\\' + '\''
+
+# sample_string = "Look at my \\'slashes\\\\\\\\\\'"
+# assert parses("String lyrics = '#{sample_string}';"),
+#   'ending a string with escaped backslashes should parse'
+# assert parses("String lyrics = '#{sample_string}'; // 'This song rocks' - Rolling Stone\n"),
+#   'quotes later (such as in comments) should not be considered part of the string'
+
 # multi-line
 # not legal in apex, but we'll hoover it up anyway
 
