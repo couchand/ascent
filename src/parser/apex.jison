@@ -124,6 +124,10 @@ class_member
    { $$ = $method; $$.method = true; }
  | property
    { $$ = $property; $$.property = true; }
+ | instance_initializer
+   { $$ = $instance_initializer; $$.instance_initializer = true; }
+ | static_initializer
+   { $$ = $static_initializer; $$.static_initializer = true; }
  ;
 
 method
@@ -154,6 +158,16 @@ parameter
 method_body
  : '{' '}'
    { $$ = []; }
+ ;
+
+instance_initializer
+ : '{' '}'
+   { $$ = { block: [] }; }
+ ;
+
+static_initializer
+ : STATIC '{' '}'
+   { $$ = { block: [] }; }
  ;
 
 property

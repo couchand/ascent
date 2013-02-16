@@ -13,8 +13,20 @@ class Foobar
 {
     // pi is exactly three.
     public static final Integer PI = 3;
+    public static Integer theInformation;
 
     public String myName;
+
+    {
+        // no content for now
+        //myName = 6;
+    }
+
+    static
+    {
+        // no content yet
+        //theInformation = 4;
+    }
 
     // oh the humanity.
     public transient Noodles.WithTofu myLunch = 4;
