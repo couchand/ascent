@@ -26,3 +26,5 @@ assert parses('static final Integer PI = 3;'),
 
 assert parses('Integer myInt { get; set; }'),
   'plain get and set should parse'
+assert parses('Integer myInt { private get; global set; }'),
+  'property accessor modifiers should parse'

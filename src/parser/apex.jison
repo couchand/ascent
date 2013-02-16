@@ -41,7 +41,7 @@ modifiers
    { $$ = $modifiers; $$.push( $modifier ); }
  ;
 
-modifier
+access_modifier
  : PRIVATE
    { $$ = 'private'; }
  | PROTECTED
@@ -50,6 +50,11 @@ modifier
    { $$ = 'public'; }
  | GLOBAL
    { $$ = 'global'; }
+ ;
+
+modifier
+ : access_modifier
+   { $$ = $access_modifier; }
  | VIRTUAL
    { $$ = 'virtual'; }
  | ABSTRACT
@@ -173,7 +178,9 @@ get_and_set
 
 get_or_set
  : identifier ';'
-   { $$ = [$identifier]; }
+   { $$ = [$identifier, []]; }
+ | access_modifier identifier ';'
+   { $$ = [$identifier, [$access_modifier]]; }
  ;
 
 declaration

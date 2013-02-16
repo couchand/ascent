@@ -9,6 +9,6 @@ public class Properties
     public Person jane
     {
         get;
-        set;
+        private set;
     }
 }
