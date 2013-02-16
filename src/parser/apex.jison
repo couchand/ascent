@@ -13,8 +13,8 @@ cls
   ;
 
 class_header
- : class_descriptor CLASS identifier implements extends
-   { $$ = [$identifier, $class_descriptor, $implements, $extends]; }
+ : class_descriptor CLASS identifier class_taxonomy
+   { $$ = [$identifier, $class_descriptor, $class_taxonomy]; }
  ;
 
 class_descriptor
@@ -55,10 +55,21 @@ class_modifier
    { $$ = 'without sharing'; }
  ;
 
-implements
+class_taxonomy
  :
-   { $$ = []; }
- | IMPLEMENTS interface_names
+   { $$ = [[], []]; }
+ | implements
+   { $$ = [$implements, []]; }
+ | extends
+   { $$ = [[], $extends]; }
+ | implements extends
+   { $$ = [$implements, $extends]; }
+ | extends implements
+   { $$ = [$implements, $extends]; }
+ ;
+
+implements
+ : IMPLEMENTS interface_names
    { $$ = $interface_names; }
  ;
 
@@ -75,9 +86,7 @@ interface_name
  ;
 
 extends
- :
-   { $$ = []; }
- | EXTENDS base_class
+ : EXTENDS base_class
    { $$ = [$base_class]; }
  ;
 
