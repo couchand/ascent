@@ -20,6 +20,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "extends"               return 'EXTENDS';
 ";"                     return ';';
 ","                     return ',';
+"."                    return '.';
 "="                     return '=';
 "{"                     return '{';
 "}"                     return '}';

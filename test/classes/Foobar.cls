@@ -15,6 +15,7 @@ class Foobar
     public static final Integer PI = 3;
 
     public String myName;
+    public Noodles.WithTofu myLunch = 4;
 
     // we can have accesors...
     public Integer myReadable

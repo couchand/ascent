@@ -125,10 +125,10 @@ class_member
  ;
 
 method
- : modifiers identifier identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier2, type: $identifier1, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
- | identifier identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier2, type: $identifier1, modifiers: [], parameters: $parameters, body: $method_body }; }
+ : modifiers fqn identifier '(' parameters ')' method_body
+   { $$ = { name: $identifier, type: $fqn, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
+ | fqn identifier '(' parameters ')' method_body
+   { $$ = { name: $identifier, type: $fqn, modifiers: [], parameters: $parameters, body: $method_body }; }
  | modifiers identifier '(' parameters ')' method_body
    { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
  | identifier '(' parameters ')' method_body
@@ -145,8 +145,8 @@ parameters
  ;
 
 parameter
- : identifier identifier
-   { $$ = { type: $identifier1, name: $identifier2 }; }
+ : fqn identifier
+   { $$ = { type: $identifier, name: $fqn }; }
  ;
 
 method_body
@@ -188,13 +188,20 @@ get_or_set
  ;
 
 declaration
- : identifier identifier
-   { $$ = { type: $identifier1, name: $identifier2 }; }
+ : fqn identifier
+   { $$ = { type: $fqn, name: $identifier }; }
  ;
 
 assignment
- : identifier identifier '=' value
-   { $$ = { type: $identifier1, name: $identifier2, initializer: $value }; }
+ : fqn identifier '=' value
+   { $$ = { type: $fqn, name: $identifier, initializer: $value }; }
+ ;
+
+fqn
+ : identifier
+   { $$ = [$identifier]; }
+ | fqn '.' identifier
+   { $$ = $fqn; $$.push( $identifier ); }
  ;
 
 identifier
