@@ -13,8 +13,13 @@ cls
   ;
 
 class_header
- : class_visibility class_modifiers CLASS identifier implements extends
-   { $$ = [$identifier, $class_visibility, $class_modifiers, $implements, $extends]; }
+ : class_descriptor CLASS identifier implements extends
+   { $$ = [$identifier, $class_descriptor, $implements, $extends]; }
+ ;
+
+class_descriptor
+ : class_visibility
+   { $$ = $class_visibility; }
  ;
 
 class_visibility
