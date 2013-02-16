@@ -46,8 +46,13 @@ class_descriptor
 inner_class_descriptor
  :
    { $$ = [[], []]; }
- | class_descriptor
-   { $$ = $class_descriptor; }
+ | member_visibility
+   { $$ = [$member_visibility]; }
+ ;
+
+member_descriptor
+ : member_visibility type
+   { $$ = [$type, $member_visibility, []]; }
  ;
 
 class_visibility
@@ -57,6 +62,13 @@ class_visibility
    { $$ = 'public'; }
  | GLOBAL
    { $$ = 'global'; }
+ ;
+
+member_visibility
+ : PRIVATE
+   { $$ = 'private'; }
+ | class_visibility
+   { $$ = $class_visibility; }
  ;
 
 class_modifiers
@@ -134,6 +146,23 @@ class_members
 class_member
  : inner_cls
    { $$ = $inner_cls; }
+ | method
+   { $$ = $method; }
+ ;
+
+method
+ : member_descriptor method_name '(' parameters ')' method_body
+   { $$ = [$method_name, $member_descriptor, $parameters, $method_body]; }
+ ;
+
+method_name
+ : identifier
+   { $$ = $identifier; }
+ ;
+
+parameters
+ :
+   { $$ = []; }
  ;
 
 identifier

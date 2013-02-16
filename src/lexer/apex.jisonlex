@@ -6,6 +6,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "/*"(\n|.)*"*/"         /* ignore block comment */
 "public"                return 'PUBLIC';
 "private"               return 'PRIVATE';
+"protected"             return 'PROTECTED';
 "global"                return 'GLOBAL';
 "abstract"              return 'ABSTRACT';
 "virtual"               return 'VIRTUAL';
@@ -17,6 +18,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 ","                     return ',';
 "{"                     return '{';
 "}"                     return '}';
+"("                     return '(';
+")"                     return ')';
 {digit}+                return 'INTLITERAL';
 {id}                    return 'IDENTIFIER';
 \s+                     /* skip whitepace */
