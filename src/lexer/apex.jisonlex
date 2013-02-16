@@ -10,6 +10,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "with"\s+"sharing"      return 'WITHSHARING';
 "without"\s+"sharing"   return 'WITHOUTSHARING';
 "class"                 return 'CLASS';
+"implements"            return 'IMPLEMENTS';
+","                     return ',';
 "{"                     return '{';
 "}"                     return '}';
 {digit}+                return 'INTLITERAL';

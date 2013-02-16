@@ -38,3 +38,9 @@ assert parses('virtual public with sharing class Foo {}'), 'the visibility can b
 assert parses('virtual public abstract class Foo {}'), 'the visibility can be between other modifiers'
 
 assert not parses('public virtual private class Foo {}'), 'there can still be only one visibility keyword'
+
+# implements
+
+assert parses('public class Foo implements Bar {}'), 'implementing an interface should parse'
+assert parses('public class Foo implements Bar, Baz, Serializable {}'), 'implementing multiple interfaces should parse'
+assert not parses('public class Foo implements {}'), 'an interface must be specified to implement'

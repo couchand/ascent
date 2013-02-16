@@ -58,6 +58,20 @@ class_modifier
 implements
  :
    { $$ = []; }
+ | IMPLEMENTS interface_names
+   { $$ = $interface_names; }
+ ;
+
+interface_names
+ : interface_name
+   { $$ = [$interface_name]; }
+ | interface_names ',' interface_name
+   { $$ = $interface_names; $$.push($interface_name); }
+ ;
+
+interface_name
+ : IDENTIFIER
+   { $$ = yytext; }
  ;
 
 extends
