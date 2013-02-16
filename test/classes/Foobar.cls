@@ -1,3 +1,14 @@
-public virtual with sharing class Foobar implements Baz extends Bar
+/*
+ * Foobar
+ *
+ * This is a class illustrating come of the capabilities
+ * of the parsing engine.
+ */
+public             // could also be private or global
+virtual            // could also be abstract
+with sharing       // could also be without sharing
+class Foobar
+implements Baz, Bo // interfaces implemented
+extends Bar        // base class extended
 {
 }
