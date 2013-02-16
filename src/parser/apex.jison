@@ -164,16 +164,16 @@ property
  | declaration ';'
    { $$ = $declaration; }
  | modifiers declaration '{' get_and_set '}'
-   { $$ = $declaration; $$.modifiers = $modifiers; $$.getSet = $get_and_set; }
+   { $$ = $declaration; $$.modifiers = $modifiers; $$.get = $get_and_set.get; $$.set = $get_and_set.set; }
  | declaration '{' get_and_set '}'
-   { $$ = $declaration; $$.getSet = $get_and_set; }
+   { $$ = $declaration; $$.get = $get_and_set.get; $$.set = $get_and_set.set; }
  ;
 
 get_and_set
  : get_or_set
-   { $$ = [$get_or_set]; }
+   { $$ = {}; $$[$get_or_set.accessor] = $get_or_set; }
  | get_or_set get_or_set
-   { $$ = [$get_or_set1, $get_or_set2]; }
+   { $$ = {}; $$[$get_or_set1.accessor] = $get_or_set1; $$[$get_or_set2.accessor] = $get_or_set2; }
  ;
 
 get_or_set
