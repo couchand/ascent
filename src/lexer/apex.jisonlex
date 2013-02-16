@@ -10,6 +10,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "global"                return 'GLOBAL';
 "abstract"              return 'ABSTRACT';
 "virtual"               return 'VIRTUAL';
+"override"              return 'OVERRIDE';
 "with"\s+"sharing"      return 'WITHSHARING';
 "without"\s+"sharing"   return 'WITHOUTSHARING';
 "class"                 return 'CLASS';

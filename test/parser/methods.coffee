@@ -21,3 +21,6 @@ assert parses('void doIt(Integer i, Integer j){}'),
   'methods with multiple parameters should parse'
 assert parses('Integer doIt(){}'),
   'method return types should parse'
+
+assert parses('protected override void foobar(){}'),
+  'method modifiers should parse'

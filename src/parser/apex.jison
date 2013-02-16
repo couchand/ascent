@@ -44,6 +44,8 @@ modifiers
 modifier
  : PRIVATE
    { $$ = 'private'; }
+ | PROTECTED
+   { $$ = 'protected'; }
  | PUBLIC
    { $$ = 'public'; }
  | GLOBAL
@@ -56,6 +58,8 @@ modifier
    { $$ = 'with sharing'; }
  | WITHOUTSHARING
    { $$ = 'without sharing'; }
+ | OVERRIDE
+   { $$ = 'override'; }
  ;
 
 class_taxonomy
