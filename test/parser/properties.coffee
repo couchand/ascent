@@ -21,3 +21,8 @@ assert parses('private Integer myInt;'),
   'variable modifiers should parse'
 assert parses('static final Integer PI = 3;'),
   'static properties should parse'
+
+# properties
+
+assert parses('Integer myInt { get; set; }'),
+  'plain get and set should parse'

@@ -158,6 +158,22 @@ property
    { $$ = [[$declaration], $modifiers]; }
  | declaration ';'
    { $$ = [[$declaration], []]; }
+ | modifiers declaration '{' get_and_set '}'
+   { $$ = [[$declaration], $modifiers, $get_and_set]; }
+ | declaration '{' get_and_set '}'
+   { $$ = [[$declaration], [], $get_and_set]; }
+ ;
+
+get_and_set
+ : get_or_set
+   { $$ = [$get_or_set]; }
+ | get_or_set get_or_set
+   { $$ = [$get_or_set1, $get_or_set2]; }
+ ;
+
+get_or_set
+ : identifier ';'
+   { $$ = [$identifier]; }
  ;
 
 declaration
