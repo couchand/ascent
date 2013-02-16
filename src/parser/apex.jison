@@ -111,6 +111,8 @@ class_member
    { $$ = $inner_cls; }
  | method
    { $$ = $method; }
+ | property
+   { $$ = $property; }
  ;
 
 method
@@ -143,7 +145,19 @@ method_body
    { $$ = []; }
  ;
 
+property
+ : identifier identifier ';'
+   { $$ = [$identifier1, $identifier2]; }
+ | identifier identifier '=' value ';'
+   { $$ = [$identifier1, $identifier2, $value]; }
+ ;
+
 identifier
  : IDENTIFIER
+   { $$ = yytext; }
+ ;
+
+value
+ : INTLITERAL
    { $$ = yytext; }
  ;
