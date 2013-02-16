@@ -22,6 +22,10 @@ class_descriptor
    { $$ = $class_visibility; }
  | class_visibility class_modifiers
    { $$ = $class_modifiers; $$.unshift( $class_visibility ); }
+ | class_modifiers class_visibility
+   { $$ = $class_modifiers; $$.unshift( $class_visibility ); }
+ | class_modifiers class_visibility class_modifiers
+   { $$ = $class_modifiers1; $$.push.apply($$, $class_modifiers2); $$.unshift( $class_visibility ); }
  ;
 
 class_visibility
