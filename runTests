@@ -1,0 +1,7 @@
+#!/bin/bash
+
+coffee test/parser/classes.coffee
+coffee test/parser/comments.coffee
+coffee test/parser/inner_classes.coffee
+coffee test/parser/methods.coffee
+coffee test/parser/properties.coffee
