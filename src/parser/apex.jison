@@ -14,24 +14,24 @@ file
 
 cls
  : class_header class_body
-   { $$ = [$class_header, $class_body]; }
+   { $$ = $class_header; $$.body = $class_body; }
  ;
 
 class_header
  : modifiers CLASS identifier class_taxonomy
-   { $$ = [$identifier, $modifiers, $class_taxonomy]; }
+   { $$ = { name: $identifier, modifiers: $modifiers, taxonomy: $class_taxonomy }; }
  ;
 
 inner_cls
  : inner_class_header class_body
-   { $$ = [$inner_class_header, $class_body]; }
+   { $$ = $inner_class_header, $$.body = $class_body; }
  ;
 
 inner_class_header
  : modifiers CLASS identifier class_taxonomy
-   { $$ = [$identifier, $modifiers, $class_taxonomy]; }
+   { $$ = { name: $identifier, modifiers: $modifiers, taxonomy: $class_taxonomy }; }
  | CLASS identifier class_taxonomy
-   { $$ = [$identifier, [], $class_taxonomy]; }
+   { $$ = { name: $identifier, modifiers: [], taxonomy: $class_taxonomy }; }
  ;
 
 modifiers
@@ -73,15 +73,15 @@ modifier
 
 class_taxonomy
  :
-   { $$ = [[], []]; }
+   { $$ = {}; }
  | implements
-   { $$ = [$implements, []]; }
+   { $$ = { implements: $implements }; }
  | extends
-   { $$ = [[], $extends]; }
+   { $$ = { extends: $extends }; }
  | implements extends
-   { $$ = [$implements, $extends]; }
+   { $$ = { implements: $implements, extends: $extends }; }
  | extends implements
-   { $$ = [$implements, $extends]; }
+   { $$ = { implements: $implements, extends: $extends }; }
  ;
 
 implements
@@ -117,22 +117,22 @@ class_members
 
 class_member
  : inner_cls
-   { $$ = $inner_cls; }
+   { $$ = { inner_class: $inner_cls }; }
  | method
-   { $$ = $method; }
+   { $$ = { method: $method }; }
  | property
-   { $$ = $property; }
+   { $$ = { property: $property }; }
  ;
 
 method
  : modifiers identifier identifier '(' parameters ')' method_body
-   { $$ = [$identifier1, $identifier2, $modifiers, $parameters, $method_body]; }
+   { $$ = { name: $identifier2, type: $identifier1, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
  | identifier identifier '(' parameters ')' method_body
-   { $$ = [$identifier1, $identifier2, [], $parameters, $method_body]; }
+   { $$ = { name: $identifier2, type: $identifier1, modifiers: [], parameters: $parameters, body: $method_body }; }
  | modifiers identifier '(' parameters ')' method_body
-   { $$ = [$identifier, $identifier, $modifiers, $parameters, $method_body]; }
+   { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
  | identifier '(' parameters ')' method_body
-   { $$ = [$identifier, $identifier, [], $parameters, $method_body]; }
+   { $$ = { name: $identifier, type: $identifier, modifiers: [], parameters: $parameters, body: $method_body }; }
  ;
 
 parameters
@@ -146,7 +146,7 @@ parameters
 
 parameter
  : identifier identifier
-   { $$ = [$identifier1, $identifier2]; }
+   { $$ = { type: $identifier1, name: $identifier2 }; }
  ;
 
 method_body
@@ -156,17 +156,17 @@ method_body
 
 property
  : modifiers assignment ';'
-   { $$ = [$assignment, $modifiers]; }
+   { $$ = $assignment; $$.modifiers = $modifiers; }
  | assignment ';'
-   { $$ = [$assignment, []]; }
+   { $$ = $assignment; }
  | modifiers declaration ';'
-   { $$ = [[$declaration], $modifiers]; }
+   { $$ = $declaration; $$.modifiers = $modifiers; }
  | declaration ';'
-   { $$ = [[$declaration], []]; }
+   { $$ = $declaration; }
  | modifiers declaration '{' get_and_set '}'
-   { $$ = [[$declaration], $modifiers, $get_and_set]; }
+   { $$ = $declaration; $$.modifiers = $modifiers; $$.getSet = $get_and_set; }
  | declaration '{' get_and_set '}'
-   { $$ = [[$declaration], [], $get_and_set]; }
+   { $$ = $declaration; $$.getSet = $get_and_set; }
  ;
 
 get_and_set
@@ -178,23 +178,23 @@ get_and_set
 
 get_or_set
  : identifier ';'
-   { $$ = [$identifier, []]; }
+   { $$ = { accessor: $identifier }; }
  | access_modifier identifier ';'
-   { $$ = [$identifier, [$access_modifier]]; }
+   { $$ = { accessor: $identifier, modifiers: [$access_modifier] }; }
  | identifier '{' '}'
-   { $$ = [$identifier, [], []]; }
+   { $$ = { accessor: $identifier, body: [] }; }
  | access_modifier identifier '{' '}'
-   { $$ = [$identifier, [$access_modifier], []]; }
+   { $$ = { accessor: $identifier, modifiers: [$access_modifier], body: [] }; }
  ;
 
 declaration
  : identifier identifier
-   { $$ = [$identifier1, $identifier2]; }
+   { $$ = { type: $identifier1, name: $identifier2 }; }
  ;
 
 assignment
  : identifier identifier '=' value
-   { $$ = [$identifier1, $identifier2, $value]; }
+   { $$ = { type: $identifier1, name: $identifier2, initializer: $value }; }
  ;
 
 identifier
