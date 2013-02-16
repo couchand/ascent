@@ -150,23 +150,23 @@ method_body
  ;
 
 property
- : modifiers assignment
+ : modifiers assignment ';'
    { $$ = [$assignment, $modifiers]; }
- | assignment
+ | assignment ';'
    { $$ = [$assignment, []]; }
- | modifiers declaration
+ | modifiers declaration ';'
    { $$ = [[$declaration], $modifiers]; }
- | declaration
+ | declaration ';'
    { $$ = [[$declaration], []]; }
  ;
 
 declaration
- : identifier identifier ';'
+ : identifier identifier
    { $$ = [$identifier1, $identifier2]; }
  ;
 
 assignment
- : identifier identifier '=' value ';'
+ : identifier identifier '=' value
    { $$ = [$identifier1, $identifier2, $value]; }
  ;
 
