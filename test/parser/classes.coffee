@@ -13,9 +13,9 @@ parses = (str) ->
 
 # visibility
 
-assert parses('public class Foo {}'), 'simple classes should parse fine'
-assert parses('private class Foo {}'), 'simple classes should parse fine'
-assert parses('global class Foo {}'), 'simple classes should parse fine'
+assert parses('public class Foo {}'), 'public classes should parse fine'
+assert parses('private class Foo {}'), 'private classes should parse fine'
+assert parses('global class Foo {}'), 'global classes should parse fine'
 assert not parses('class Foo {}'), 'visibility keyword is required'
 assert not parses('public private class Foo {}'), 'there can be only one visibility keyword'
 
