@@ -20,6 +20,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "class"                 return 'CLASS';
 "implements"            return 'IMPLEMENTS';
 "extends"               return 'EXTENDS';
+"true"                  return 'TRUE';
+"false"                 return 'FALSE';
 ";"                     return ';';
 ","                     return ',';
 "."                    return '.';

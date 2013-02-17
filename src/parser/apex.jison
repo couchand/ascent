@@ -232,4 +232,8 @@ value
    { $$ = yytext; }
  | DECLITERAL
    { $$ = yytext; }
+ | TRUE
+   { $$ = 'true'; }
+ | FALSE
+   { $$ = 'false'; }
  ;
