@@ -24,7 +24,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "false"                 return 'FALSE';
 ";"                     return ';';
 ","                     return ',';
-"."                    return '.';
+"."                     return '.';
 "="                     return '=';
 "{"                     return '{';
 "}"                     return '}';
