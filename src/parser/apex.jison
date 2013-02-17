@@ -230,6 +230,8 @@ value
    { $$ = yytext; }
  | STRLITERAL
    { $$ = yytext; }
+ | LNGLITERAL
+   { $$ = yytext; }
  | DECLITERAL
    { $$ = yytext; }
  | TRUE

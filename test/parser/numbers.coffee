@@ -20,3 +20,8 @@ assert parses('Integer i = 42;'),
 
 assert parses('Decimal d = 13.37;'),
   'decimal literals should parse'
+
+# longs ???
+
+assert parses('Long l = 1234567L;'),
+  'long literals should parse'

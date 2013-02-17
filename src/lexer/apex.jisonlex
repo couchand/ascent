@@ -31,6 +31,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "("                     return '(';
 ")"                     return ')';
 {digit}+"."{digit}+     return 'DECLITERAL';
+{digit}+"L"             return 'LNGLITERAL';
 {digit}+                return 'INTLITERAL';
 {id}                    return 'IDENTIFIER';
 \s+                     /* skip whitepace */
