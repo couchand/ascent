@@ -230,4 +230,6 @@ value
    { $$ = yytext; }
  | STRLITERAL
    { $$ = yytext; }
+ | DECLITERAL
+   { $$ = yytext; }
  ;

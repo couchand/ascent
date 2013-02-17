@@ -16,6 +16,7 @@ class Foobar
     public static Integer theInformation;
 
     public String myName = 'Dr. Bashir'; // said 'hi'
+    private Decimal salary = 345000.12;
 
     public String myFavoriteBook = '\'Crime and Punishment\'';
     {

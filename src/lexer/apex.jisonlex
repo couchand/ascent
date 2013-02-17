@@ -28,6 +28,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "}"                     return '}';
 "("                     return '(';
 ")"                     return ')';
+{digit}+"."{digit}+     return 'DECLITERAL';
 {digit}+                return 'INTLITERAL';
 {id}                    return 'IDENTIFIER';
 \s+                     /* skip whitepace */
