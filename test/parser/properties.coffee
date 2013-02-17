@@ -11,6 +11,11 @@ parses = (str) ->
   catch error
     no
 
+# null (where to put this?)
+
+assert parses('Object o = null;'),
+  'null should parse'
+
 # basic
 
 assert parses('Integer myInt;'),

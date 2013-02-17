@@ -238,4 +238,6 @@ value
    { $$ = 'true'; }
  | FALSE
    { $$ = 'false'; }
+ | NULL
+   { $$ = 'null'; }
  ;

@@ -22,6 +22,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "extends"               return 'EXTENDS';
 "true"                  return 'TRUE';
 "false"                 return 'FALSE';
+"null"                  return 'NULL';
 ";"                     return ';';
 ","                     return ',';
 "."                     return '.';
