@@ -19,7 +19,7 @@ cls
 
 class_header
  : modifiers CLASS identifier class_taxonomy
-   { $$ = { name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
+   { $$ = { line: yylineno, name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
  ;
 
 inner_cls
@@ -29,9 +29,9 @@ inner_cls
 
 inner_class_header
  : modifiers CLASS identifier class_taxonomy
-   { $$ = { name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
+   { $$ = { line: yylineno, name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
  | CLASS identifier class_taxonomy
-   { $$ = { name: $identifier, modifiers: [], taxonomy: $class_taxonomy }; }
+   { $$ = { line: yylineno, name: $identifier, modifiers: [], taxonomy: $class_taxonomy }; }
  ;
 
 modifiers
@@ -132,13 +132,13 @@ class_member
 
 method
  : modifiers fqn identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $fqn, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
+   { $$ = { line: yylineno, name: $identifier, type: $fqn, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
  | fqn identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $fqn, modifiers: [], parameters: $parameters, body: $method_body }; }
+   { $$ = { line: yylineno, name: $identifier, type: $fqn, modifiers: [], parameters: $parameters, body: $method_body }; }
  | modifiers identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
+   { $$ = { line: yylineno, name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
  | identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $identifier, modifiers: [], parameters: $parameters, body: $method_body }; }
+   { $$ = { line: yylineno, name: $identifier, type: $identifier, modifiers: [], parameters: $parameters, body: $method_body }; }
  ;
 
 parameters
@@ -152,7 +152,7 @@ parameters
 
 parameter
  : fqn identifier
-   { $$ = { type: $fqn, name: $identifier }; }
+   { $$ = { line: yylineno, type: $fqn, name: $identifier }; }
  ;
 
 method_body
@@ -162,12 +162,12 @@ method_body
 
 instance_initializer
  : '{' '}'
-   { $$ = { block: [] }; }
+   { $$ = { line: yylineno, block: [] }; }
  ;
 
 static_initializer
  : STATIC '{' '}'
-   { $$ = { block: [] }; }
+   { $$ = { line: yylineno, block: [] }; }
  ;
 
 property
@@ -194,23 +194,23 @@ get_and_set
 
 get_or_set
  : identifier ';'
-   { $$ = { accessor: $identifier }; }
+   { $$ = { line: yylineno, accessor: $identifier }; }
  | access_modifier identifier ';'
-   { $$ = { accessor: $identifier, modifiers: [$access_modifier] }; }
+   { $$ = { line: yylineno, accessor: $identifier, modifiers: [$access_modifier] }; }
  | identifier '{' '}'
-   { $$ = { accessor: $identifier, body: [] }; }
+   { $$ = { line: yylineno, accessor: $identifier, body: [] }; }
  | access_modifier identifier '{' '}'
-   { $$ = { accessor: $identifier, modifiers: [$access_modifier], body: [] }; }
+   { $$ = { line: yylineno, accessor: $identifier, modifiers: [$access_modifier], body: [] }; }
  ;
 
 declaration
  : fqn identifier
-   { $$ = { type: $fqn, name: $identifier }; }
+   { $$ = { line: yylineno, type: $fqn, name: $identifier }; }
  ;
 
 assignment
  : fqn identifier '=' value
-   { $$ = { type: $fqn, name: $identifier, initializer: $value }; }
+   { $$ = { line: yylineno, type: $fqn, name: $identifier, initializer: $value }; }
  ;
 
 fqn
