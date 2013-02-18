@@ -1,4 +1,21 @@
-413c413
+8c8,9
+< performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
+---
+> performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
+>   function _performAction(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
+160c161,169
+< }
+---
+> } // end switch
+>   } // end function
+> 
+>   var ret = _performAction.call(this, yytext, yyleng, yylineno, yy, yystate, $$, _$);
+>   var $0 = $$.length - 1;
+>   if ( typeof this.$ === 'object' ) {
+>     this.$.position = _$[$0];
+>   }
+>   return ret;
+539c548
 <   exports.main(process.argv.slice(1));
 ---
 >   console.log(JSON.stringify(exports.main(process.argv.slice(1)), null, 2));
