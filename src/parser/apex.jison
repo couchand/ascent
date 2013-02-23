@@ -158,6 +158,18 @@ parameter
 method_body
  : '{' '}'
    { $$ = []; }
+ | '{' statements '}'
+   { $$ = $statements; }
+ ;
+
+statements
+ : statement
+   { $$ = [$statement]; }
+ ;
+
+statement
+ : ';'
+   { $$ = []; }
  ;
 
 instance_initializer
