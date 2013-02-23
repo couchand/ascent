@@ -25,6 +25,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "null"                  return 'NULL';
 "break"                 return 'BREAK';
 "continue"              return 'CONTINUE';
+"try"                   return 'TRY';
+"catch"                 return 'CATCH';
 ";"                     return ';';
 ","                     return ',';
 "."                     return '.';

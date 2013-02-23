@@ -24,3 +24,7 @@ assert parses('continue;'), 'continue statements should parse'
 
 assert parses('Integer i;'), 'simple declarations should parse'
 assert parses('Integer i = 42;'), 'initializers should parse'
+
+# try/catch
+
+assert parses('try ; catch (Expression ex) ;'), 'try catch should parse'

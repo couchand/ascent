@@ -176,6 +176,13 @@ statement
    { $$ = ['continue']; }
  | declaration ';'
    { $$ = $declaration; }
+ | try_statement
+   { $$ = $try_statement; }
+ ;
+
+try_statement
+ : TRY statement CATCH '(' parameter ')' statement
+   { $$ = [$statement1, [[$parameter, $statement2]]]; }
  ;
 
 instance_initializer
