@@ -182,7 +182,7 @@ statement
 
 try_statement
  : TRY block_statements catches
-   { $$ = [$block_statements, $catches]; }
+   { $$ = { block: $block_statements, catches: $catches }; }
  ;
 
 catches
@@ -194,7 +194,7 @@ catches
 
 catch_clause
  : CATCH '(' parameter ')' block_statements
-   { $$ = [$parameter, $block_statements]; }
+   { $$ = { parameter: $parameter, block: $block_statements }; }
  ;
 
 instance_initializer
