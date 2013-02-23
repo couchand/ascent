@@ -187,11 +187,7 @@ static_initializer
  ;
 
 property
- : modifiers assignment ';'
-   { $$ = $assignment; $$.modifiers = $modifiers; }
- | assignment ';'
-   { $$ = $assignment; }
- | modifiers declaration ';'
+ : modifiers declaration ';'
    { $$ = $declaration; $$.modifiers = $modifiers; }
  | declaration ';'
    { $$ = $declaration; }
@@ -222,11 +218,8 @@ get_or_set
 declaration
  : fqn identifier
    { $$ = { type: $fqn, name: $identifier }; }
- ;
-
-assignment
- : fqn identifier '=' value
-   { $$ = { type: $fqn, name: $identifier, initializer: $value }; }
+ | fqn identifier  '=' value
+   { $$ = { type: $fqn, name: $identifier, initializer: $value } }
  ;
 
 fqn
