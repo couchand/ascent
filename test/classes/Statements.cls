@@ -8,5 +8,8 @@ public class Statements
         catch ( Exception ex )
         {
         }
+        finally
+        {
+        }
     }
 }

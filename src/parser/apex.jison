@@ -183,6 +183,8 @@ statement
 try_statement
  : TRY block_statements catches
    { $$ = { block: $block_statements, catches: $catches }; }
+ | TRY block_statements catches FINALLY block_statements
+   { $$ = { block: $block_statements1, catches: $catches, finallyBlock: $block_statements2 }; }
  ;
 
 catches

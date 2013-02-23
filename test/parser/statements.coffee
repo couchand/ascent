@@ -29,3 +29,4 @@ assert parses('Integer i = 42;'), 'initializers should parse'
 
 assert parses('try {} catch (Exception ex){}'), 'try catch should parse'
 assert parses('try {} catch (Exception ex){} catch (AnotherException ex){}'), 'multiple catches should parse'
+assert parses('try {} catch (Exception ex){} finally {}'), 'finally should parse'
