@@ -10,3 +10,4 @@ coffee test/parser/names.coffee
 coffee test/parser/numbers.coffee
 coffee test/parser/properties.coffee
 coffee test/parser/strings.coffee
+coffee test/parser/statements.coffee
