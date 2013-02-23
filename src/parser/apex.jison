@@ -174,6 +174,8 @@ statement
    { $$ = ['break']; }
  | CONTINUE ';'
    { $$ = ['continue']; }
+ | declaration ';'
+   { $$ = $declaration; }
  ;
 
 instance_initializer

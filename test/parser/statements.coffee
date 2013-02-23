@@ -19,3 +19,8 @@ assert parses(';'), 'an empty statement should parse'
 
 assert parses('break;'), 'break statements should parse'
 assert parses('continue;'), 'continue statements should parse'
+
+# variable declaration
+
+assert parses('Integer i;'), 'simple declarations should parse'
+assert parses('Integer i = 42;'), 'initializers should parse'
