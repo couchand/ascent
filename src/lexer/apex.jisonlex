@@ -23,6 +23,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "true"                  return 'TRUE';
 "false"                 return 'FALSE';
 "null"                  return 'NULL';
+"break"                 return 'BREAK';
+"continue"              return 'CONTINUE';
 ";"                     return ';';
 ","                     return ',';
 "."                     return '.';

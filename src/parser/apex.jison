@@ -170,6 +170,10 @@ statements
 statement
  : ';'
    { $$ = []; }
+ | BREAK ';'
+   { $$ = ['break']; }
+ | CONTINUE ';'
+   { $$ = ['continue']; }
  ;
 
 instance_initializer
