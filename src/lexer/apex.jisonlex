@@ -28,6 +28,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "try"                   return 'TRY';
 "catch"                 return 'CATCH';
 "finally"               return 'FINALLY';
+"throw"                 return 'THROW';
 ";"                     return ';';
 ","                     return ',';
 "."                     return '.';

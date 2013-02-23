@@ -174,6 +174,8 @@ statement
    { $$ = ['break']; }
  | CONTINUE ';'
    { $$ = ['continue']; }
+ | THROW identifier ';'
+   { $$ = { throws: $identifier }; }
  | declaration ';'
    { $$ = $declaration; }
  | try_statement
