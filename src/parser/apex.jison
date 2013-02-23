@@ -131,14 +131,14 @@ class_member
  ;
 
 method
- : modifiers fqn identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $fqn, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
- | fqn identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $fqn, modifiers: [], parameters: $parameters, body: $method_body }; }
- | modifiers identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $method_body }; }
- | identifier '(' parameters ')' method_body
-   { $$ = { name: $identifier, type: $identifier, modifiers: [], parameters: $parameters, body: $method_body }; }
+ : modifiers fqn identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $fqn, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
+ | fqn identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $fqn, modifiers: [], parameters: $parameters, body: $block_statements }; }
+ | modifiers identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
+ | identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $identifier, modifiers: [], parameters: $parameters, body: $block_statements }; }
  ;
 
 parameters
@@ -155,7 +155,7 @@ parameter
    { $$ = { type: $fqn, name: $identifier }; }
  ;
 
-method_body
+block_statements
  : '{' '}'
    { $$ = []; }
  | '{' statements '}'
@@ -181,8 +181,20 @@ statement
  ;
 
 try_statement
- : TRY statement CATCH '(' parameter ')' statement
-   { $$ = [$statement1, [[$parameter, $statement2]]]; }
+ : TRY block_statements catches
+   { $$ = [$block_statements, $catches]; }
+ ;
+
+catches
+ : catch_clause
+   { $$ = [$catch_clause]; }
+ | catches catch_clause
+   { $$ = $catches; $$.push($catch_clause); }
+ ;
+
+catch_clause
+ : CATCH '(' parameter ')' block_statements
+   { $$ = [$parameter, $block_statements]; }
  ;
 
 instance_initializer
