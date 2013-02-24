@@ -30,6 +30,11 @@ assert parses('true;'), 'expression statements should parse'
 assert parses('break;'), 'break statements should parse'
 assert parses('continue;'), 'continue statements should parse'
 
+# return
+
+assert parses('return;'), 'simple return should parse'
+assert parses('return true;'), 'return with a value should parse'
+
 # variable declaration
 
 assert parses('Integer i;'), 'simple declarations should parse'

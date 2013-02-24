@@ -171,6 +171,8 @@ statement
    { $$ = ['break']; }
  | CONTINUE ';'
    { $$ = ['continue']; }
+ | return_statement
+   { $$ = $return_statement; }
  | THROW expression ';'
    { $$ = { throws: $expression }; }
  | declaration_statement
@@ -189,6 +191,13 @@ statement
    { $$ = $block_statements; }
  | expression ';'
    { $$ = { expression: $expression }; }
+ ;
+
+return_statement
+ : RETURN ';'
+   { $$ = { returns: [] }; }
+ | RETURN expression ';'
+   { $$ = { returns: [$expression] }; }
  ;
 
 try_statement
