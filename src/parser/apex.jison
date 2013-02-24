@@ -324,6 +324,19 @@ declarator
 expression
  : assignment_expression
    { $$ = $assignment_expression; }
+ | expression9
+   { $$ = $expression9; }
+ ;
+
+expression9
+ : ternary_expression
+   { $$ = $ternary_expression; }
+ | expression8
+   { $$ = $expression8; }
+ ;
+
+expression8
+ : logical_or_expression
  | primary
    { $$ = $primary; }
  ;
@@ -331,6 +344,11 @@ expression
 assignment_expression
  : identifier '=' expression
    { $$ = { assignee: $identifier, value: $expression }; }
+ ;
+
+ternary_expression
+ : expression8 '?' expression9 ':' expression9
+   { $$ = { condition: $expression8, trueValue: $expression91, falseValue: $expression92 }; }
  ;
 
 primary

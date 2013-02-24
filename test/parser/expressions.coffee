@@ -15,3 +15,8 @@ parses = (str) ->
 
 assert parses('theAnswer = 42'), 'simple assignments should parse'
 assert parses('sixOfOne = halfADozen = 6'), 'compound assignments should parse'
+
+# ternary
+
+assert parses('true ? false : true'), 'ternary operators should parse'
+assert parses('true ? false ? true : false : true ? false : true'), 'compound ternaries should parse'
