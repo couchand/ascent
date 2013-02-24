@@ -174,8 +174,8 @@ statement
    { $$ = ['break']; }
  | CONTINUE ';'
    { $$ = ['continue']; }
- | THROW identifier ';'
-   { $$ = { throws: $identifier }; }
+ | THROW expression ';'
+   { $$ = { throws: $expression }; }
  | declaration ';'
    { $$ = $declaration; }
  | try_statement
@@ -243,8 +243,8 @@ get_or_set
 declaration
  : fqn identifier
    { $$ = { type: $fqn, name: $identifier }; }
- | fqn identifier  '=' value
-   { $$ = { type: $fqn, name: $identifier, initializer: $value } }
+ | fqn identifier  '=' expression
+   { $$ = { type: $fqn, name: $identifier, initializer: $expression } }
  ;
 
 fqn
@@ -252,6 +252,13 @@ fqn
    { $$ = [$identifier]; }
  | fqn '.' identifier
    { $$ = $fqn; $$.push( $identifier ); }
+ ;
+
+expression
+ : identifier
+   { $$ = $identifier; }
+ | value
+   { $$ = $value; }
  ;
 
 identifier
