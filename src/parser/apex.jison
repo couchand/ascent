@@ -181,31 +181,31 @@ statement
  : ';'
    { $$ = []; }
  | BREAK ';'
-   { $$ = ['break']; }
+   { $$ = { statement: 'break' }; }
  | CONTINUE ';'
-   { $$ = ['continue']; }
+   { $$ = { statement: 'continue' }; }
  | return_statement
-   { $$ = $return_statement; }
+   { $$ = $return_statement; $$.statement = 'return'; }
  | THROW expression ';'
-   { $$ = { throws: $expression }; }
+   { $$ = { throws: $expression, statement: 'throw' }; }
  | declaration_statement
-   { $$ = $declaration_statement; }
+   { $$ = $declaration_statement; $$.statement = 'declaration'; }
  | try_statement
-   { $$ = $try_statement; }
+   { $$ = $try_statement; $$.statement = 'try'; }
  | if_statement
-   { $$ = $if_statement; }
+   { $$ = $if_statement; $$.statement = 'if'; }
  | while_statement
-   { $$ = $while_statement; }
+   { $$ = $while_statement; $$.statement = 'while'; }
  | do_while_statement
-   { $$ = $do_while_statement; }
+   { $$ = $do_while_statement; $$.statement = 'do while'; }
  | for_statement
-   { $$ = $for_statement; }
+   { $$ = $for_statement; $$.statement = 'for'; }
  | block_statements
-   { $$ = $block_statements; }
+   { $$ = { block: $block_statements, statement: 'block' }; }
  | assignment_expression ';'
-   { $$ = { expression: $assignment_expression }; }
+   { $$ = { expression: $assignment_expression, statement: 'assignment' }; }
  | method_call ';'
-   { $$ = { expression: $method_call }; }
+   { $$ = { expression: $method_call, statement: 'method call' }; }
  ;
 
 return_statement
