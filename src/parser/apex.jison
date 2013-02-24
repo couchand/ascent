@@ -127,9 +127,9 @@ class_member
 
 method
  : modifiers identifier identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
+   { $$ = { name: $identifier1, type: $identifier2, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
  | identifier identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier, type: $identifier, modifiers: [], parameters: $parameters, body: $block_statements }; }
+   { $$ = { name: $identifier1, type: $identifier2, modifiers: [], parameters: $parameters, body: $block_statements }; }
  | modifiers identifier '(' parameters ')' block_statements
    { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
  | identifier '(' parameters ')' block_statements
@@ -147,7 +147,7 @@ parameters
 
 parameter
  : identifier identifier
-   { $$ = { type: $identifier, name: $identifier }; }
+   { $$ = { type: $identifier1, name: $identifier2 }; }
  ;
 
 block_statements
@@ -317,7 +317,7 @@ declaration
 declarator
  : identifier
    { $$ = { name: $identifier }; }
- | identifier  '=' expression
+ | identifier '=' expression
    { $$ = { name: $identifier, initializer: $expression } }
  ;
 
