@@ -87,10 +87,17 @@ implements
  ;
 
 interface_names
+ : interface_name
+   { $$ = [$interface_name]; }
+ | interface_names ',' interface_name
+   { $$ = $interface_names; $$.push($interface_name); }
+ ;
+
+interface_name
  : identifier
-   { $$ = [$identifier]; }
- | interface_names ',' identifier
-   { $$ = $interface_names; $$.push($identifier); }
+   { $$ = $identifier; }
+ | collection_type
+   { $$ = $collection_type; }
  ;
 
 extends

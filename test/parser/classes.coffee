@@ -57,6 +57,8 @@ assert parses('public class Foo implements Bar, Baz, Serializable {}'),
   'implementing multiple interfaces should parse'
 assert not parses('public class Foo implements {}'),
   'an interface must be specified to implement'
+assert parses('public class Foo implements Batchable<sObject> {}'),
+  'templated interfaces should parse fine'
 
 # extends
 
