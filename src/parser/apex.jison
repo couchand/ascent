@@ -438,15 +438,20 @@ primary
  ;
 
 new_allocation
- : NEW identifier '(' arg_list ')'
+ : NEW primary_no_parens '(' arg_list ')'
+   { $$ = { callee: $primary_no_parens, argv: $arg_list }; }
  | NEW collection_type '(' arg_list ')'
+   { $$ = { callee: $collection_type, argv: $arg_list }; }
  | NEW collection_type '{' initialization_list '}'
+   { $$ = { callee: $collection_type, initializer: $initialization_list }; }
  ;
 
 initialization_list
  :
  | expression
+   { $$ = [$expression]; }
  | initialization_list ',' expression
+   { $$ = $initialization_list, $$.push($expression); }
  ;
 
 primary_no_parens
@@ -578,16 +583,21 @@ parenthesized_expression
 
 collection_type
  : identifier '<' nested_types '>'
+   { $$ = { container: $identifier, contains: $nested_types }; }
  ;
 
 nested_types
  : nested_type
+   { $$ = $nested_type; }
  | nested_type ',' nested_type
+   { $$ = [$nested_type1, $nested_type2]; }
  ;
 
 nested_type
  : collection_type
+   { $$ = $collection_type; }
  | identifier
+   { $$ = $identifier; }
  ;
 
 identifier
