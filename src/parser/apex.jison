@@ -337,6 +337,20 @@ expression9
 
 expression8
  : logical_or_expression
+   { $$ = $logical_or_expression; }
+ | expression7
+   { $$ = $expression7; }
+ ;
+
+expression7
+ : logical_and_expression
+   { $$ = $logical_and_expression; }
+ | expression6
+   { $$ = $expression6; }
+ ;
+
+expression6
+ : equality_expression
  | primary
    { $$ = $primary; }
  ;
@@ -349,6 +363,16 @@ assignment_expression
 ternary_expression
  : expression8 '?' expression9 ':' expression9
    { $$ = { condition: $expression8, trueValue: $expression91, falseValue: $expression92 }; }
+ ;
+
+logical_or_expression
+ : expression7 '||' expression8
+   { $$ = { left: $expression7, right: $expression8 }; }
+ ;
+
+logical_and_expression
+ : expression6 '&&' expression7
+   { $$ = { left: $expression6, right: $expression7 }; }
  ;
 
 primary
