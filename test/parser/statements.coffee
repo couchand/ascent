@@ -59,6 +59,8 @@ assert parses('for( true;; ) ;'), 'for expression initializers should parse'
 assert parses('for( ; true; ) ;'), 'for conditions should parse'
 assert parses('for( ;; false ) ;'), 'for increments should parse'
 
+assert parses('for( Integer i : listOfNumbers ) ;'), 'list for loops should parse'
+
 # try/catch
 
 assert parses('try {} catch (Exception ex){}'), 'try catch should parse'

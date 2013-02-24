@@ -230,6 +230,8 @@ do_while_statement
 for_statement
  : FOR '(' for_initializer ';' for_condition ';' for_increment ')' statement
    { $$ = { initializer: $for_initializer, condition: $for_condition, increment: $for_increment,  block: $statement } }
+ | FOR '(' identifier identifier ':' expression ')' statement
+   { $$ = { iterator: { name: $identifier2, type: $identifier1 }, domain: $expression, block: $statement }; }
  ;
 
 for_initializer

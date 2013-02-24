@@ -35,6 +35,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "do"                    return 'DO';
 "for"                   return 'FOR';
 ";"                     return ';';
+":"                     return ':';
 ","                     return ',';
 "."                     return '.';
 "="                     return '=';
