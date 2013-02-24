@@ -1,10 +1,5 @@
 /* apex grammar */
 
-/*
- %right LAMBDA
- %left SEP
-*/
-
 %%
 
 file
