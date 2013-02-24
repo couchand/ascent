@@ -365,7 +365,21 @@ expression5
 
 expression4
  : addition_expression
- | subtraction_expression
+   { $$ = $addition_expression; }
+ | expression4b
+   { $$ = $expression4b; }
+ ;
+
+expression4b
+ : subtraction_expression
+   { $$ = $subtraction_expression; }
+ | expression3
+   { $$ = $expression3; }
+ ;
+
+expression3
+ : multiplication_expression
+ | division_expression
  | primary
    { $$ = $primary; }
  ;
@@ -412,6 +426,16 @@ inequality_operator
  | '<='
  | '>'
  | '>='
+ ;
+
+addition_expression
+ : expression4b '+' expression4
+   { $$ = { left: $expression4b, right: $expression4 }; }
+ ;
+
+subtraction_expression
+ : expression3 '-' expression4b
+   { $$ = { left: $expression3, right: $expression4b }; }
  ;
 
 primary

@@ -38,3 +38,10 @@ assert parses('a < b'), 'less than should parse'
 assert parses('a <= b'), 'less than or equal should parse'
 assert parses('a > b'), 'greater than should parse'
 assert parses('a >= b'), 'greater than or equal should parse'
+
+# arithmetic
+
+assert parses('a + b'), 'simple addition should parse'
+assert parses('a + b + c + d'), 'compound addition should parse'
+assert parses('a - b'), 'simple subtraction should parse'
+assert parses('a - b - c - d'), 'coumpound subtraction should parse'
