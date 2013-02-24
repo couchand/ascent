@@ -134,9 +134,9 @@ class_member
 
 method
  : modifiers identifier identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier1, type: $identifier2, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
+   { $$ = { name: $identifier2, type: $identifier1, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
  | identifier identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier1, type: $identifier2, modifiers: [], parameters: $parameters, body: $block_statements }; }
+   { $$ = { name: $identifier2, type: $identifier1, modifiers: [], parameters: $parameters, body: $block_statements }; }
  | modifiers collection_type identifier '(' parameters ')' block_statements
    { $$ = { name: $identifier, type: $collection_type, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
  | collection_type identifier '(' parameters ')' block_statements
