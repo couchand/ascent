@@ -253,13 +253,13 @@ for_increment
  ;
 
 instance_initializer
- : '{' '}'
-   { $$ = { block: [] }; }
+ : block_statements
+   { $$ = { block: $block_statements }; }
  ;
 
 static_initializer
- : STATIC '{' '}'
-   { $$ = { block: [] }; }
+ : STATIC block_statements
+   { $$ = { block: $block_statements }; }
  ;
 
 property

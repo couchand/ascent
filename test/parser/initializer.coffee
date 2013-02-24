@@ -13,8 +13,10 @@ parses = (str) ->
 
 # instance initialization
 
-assert parses('{}'), 'instance initialization blocks should parse'
+assert parses('{}'), 'empty instance initialization blocks should parse'
+assert parses('{;}'), 'instance initialization blocks should parse'
 
 # static initialization
 
-assert parses('static {}'), 'static initialization blocks should parse'
+assert parses('static {}'), 'empty static initialization blocks should parse'
+assert parses('static {;}'), 'static initialization blocks should parse'
