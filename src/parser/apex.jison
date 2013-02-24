@@ -489,17 +489,17 @@ ternary_expression
 
 logical_or_expression
  : expression7 '||' expression8
-   { $$ = { left: $expression7, right: $expression8 }; }
+   { $$ = { operator: '||', left: $expression7, right: $expression8 }; }
  ;
 
 logical_and_expression
  : expression6 '&&' expression7
-   { $$ = { left: $expression6, right: $expression7 }; }
+   { $$ = { operator: '&&', left: $expression6, right: $expression7 }; }
  ;
 
 equality_expression
  : expression5 equality_operator expression5
-   { $$ = { left: $expression51, right: $expression52 }; }
+   { $$ = { operator: $equality_operator, left: $expression51, right: $expression52 }; }
  ;
 
 equality_operator
@@ -511,7 +511,7 @@ equality_operator
 
 inequality_expression
  : expression4 inequality_operator expression4
-   { $$ = { left: $expression41, right: $expression42 }; }
+   { $$ = { operator: $inequality_operator, left: $expression41, right: $expression42 }; }
  ;
 
 inequality_operator
@@ -523,22 +523,22 @@ inequality_operator
 
 addition_expression
  : expression4b '+' expression4
-   { $$ = { left: $expression4b, right: $expression4 }; }
+   { $$ = { operator: '+', left: $expression4b, right: $expression4 }; }
  ;
 
 subtraction_expression
  : expression3 '-' expression4b
-   { $$ = { left: $expression3, right: $expression4b }; }
+   { $$ = { operator: '-', left: $expression3, right: $expression4b }; }
  ;
 
 multiplication_expression
  : expression3b '*' expression3
-   { $$ = { left: $expression3b, right: $expression3 }; }
+   { $$ = { operator: '*', left: $expression3b, right: $expression3 }; }
  ;
 
 division_expression
  : expression2 '/' expression3b
-   { $$ = { left: $expression2, right: $expression3b }; }
+   { $$ = { operator: '/', left: $expression2, right: $expression3b }; }
  ;
 
 invert_expression
@@ -558,12 +558,12 @@ nullipotent_expression
 
 prefix_expression
  : prefix_operator primary
-   { $$ = { expression: $primary }; }
+   { $$ = { prefix: $prefix_operator, expression: $primary }; }
  ;
 
 postfix_expression
  : primary postfix_operator
-   { $$ = { expression: $primary }; }
+   { $$ = { postfix: $postfix_operator, expression: $primary }; }
  ;
 
 prefix_operator
@@ -578,7 +578,7 @@ postfix_operator
 
 parenthesized_expression
  : '(' expression ')'
-   { $$ = $expression; }
+   { $$ = { parenthesized: $expression }; }
  ;
 
 collection_type
