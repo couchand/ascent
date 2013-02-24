@@ -4,12 +4,18 @@ public class Statements
     {
         try
         {
+            if ( false )
+            {
+                throw ex;
+            }
         }
         catch ( Exception ex )
         {
+            Integer i = 5;
         }
         finally
         {
+            String foo = 'bar';
         }
     }
 }

@@ -11,4 +11,12 @@ public class Properties
         get;
         private set;
     }
+
+    private Person martha
+    {
+        get
+        {
+            Integer i = 42;
+        }
+    }
 }
