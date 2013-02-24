@@ -31,6 +31,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "throw"                 return 'THROW';
 "if"                    return 'IF';
 "else"                  return 'ELSE';
+"while"                 return 'WHILE';
 ";"                     return ';';
 ","                     return ',';
 "."                     return '.';
