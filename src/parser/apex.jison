@@ -87,15 +87,15 @@ implements
  ;
 
 interface_names
- : identifier
-   { $$ = [$identifier]; }
- | interface_names ',' identifier
-   { $$ = $interface_names; $$.push($identifier); }
+ : type_name
+   { $$ = [$type_name]; }
+ | interface_names ',' type_name
+   { $$ = $interface_names; $$.push($type_name); }
  ;
 
 extends
- : EXTENDS identifier
-   { $$ = [$identifier]; }
+ : EXTENDS type_name
+   { $$ = [$type_name]; }
  ;
 
 class_body
@@ -126,10 +126,10 @@ class_member
  ;
 
 method
- : modifiers fqn identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier, type: $fqn, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
- | fqn identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier, type: $fqn, modifiers: [], parameters: $parameters, body: $block_statements }; }
+ : modifiers type_name identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $type_name, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
+ | type_name identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $type_name, modifiers: [], parameters: $parameters, body: $block_statements }; }
  | modifiers identifier '(' parameters ')' block_statements
    { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
  | identifier '(' parameters ')' block_statements
@@ -146,8 +146,8 @@ parameters
  ;
 
 parameter
- : fqn identifier
-   { $$ = { type: $fqn, name: $identifier }; }
+ : type_name identifier
+   { $$ = { type: $type_name, name: $identifier }; }
  ;
 
 block_statements
@@ -291,8 +291,8 @@ declaration_statement
  ;
 
 declaration
- : fqn declarator
-   { $$ = $declarator; $$.type = $fqn; }
+ : type_name declarator
+   { $$ = $declarator; $$.type = $type_name; }
  ;
 
 declarator
@@ -302,7 +302,7 @@ declarator
    { $$ = { name: $identifier, initializer: $expression } }
  ;
 
-fqn
+type_name
  : identifier
    { $$ = $identifier; }
  | FQN
