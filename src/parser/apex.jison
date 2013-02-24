@@ -148,6 +148,8 @@ parameters
 parameter
  : identifier identifier
    { $$ = { type: $identifier1, name: $identifier2 }; }
+ | collection_type identifier
+   { $$ = { type: $collection_type, name: $identifier }; }
  ;
 
 block_statements
@@ -312,6 +314,8 @@ declaration_statement
 declaration
  : identifier declarator
    { $$ = $declarator; $$.type = $identifier; }
+ | collection_type declarator
+   { $$ = $declarator; $$.type = $collection_type; }
  ;
 
 declarator
@@ -522,6 +526,20 @@ postfix_operator
 parenthesized_expression
  : '(' expression ')'
    { $$ = $expression; }
+ ;
+
+collection_type
+ : identifier '<' nested_types '>'
+ ;
+
+nested_types
+ : nested_type
+ | nested_type ',' nested_type
+ ;
+
+nested_type
+ : collection_type
+ | identifier
  ;
 
 identifier

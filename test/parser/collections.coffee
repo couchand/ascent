@@ -1,0 +1,25 @@
+# collection parsing tests
+
+p = require '../../dst/apex.js'
+
+assert = (val, msg) ->
+  throw new Error msg if !val
+
+parses = (str) ->
+  try
+    p.parse "public class Foo { #{str} }"
+  catch error
+    no
+
+# declarations
+
+assert parses('void doFoo(){ List<String> l; }'), 'collections should parse'
+assert parses('void doFoo(){ List<Map<Id, String>> l; }'), 'nested collections should parse'
+
+# properties
+
+assert parses('public List<String> foos;'), 'collections as properties should parse'
+
+# parameters
+
+assert parses('void doFoo(List<String> strs) {}'), 'collections as method params should parse'
