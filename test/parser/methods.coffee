@@ -34,3 +34,5 @@ assert parses('private Foo(){}'), 'constructor modifiers should parse'
 #invocation
 
 assert parses('void doFoo(){ bar(); }'), 'method invocations should parse'
+assert parses('void doFoo(){ bar(4); }'), 'method call parameters should parse'
+assert parses('void doFoo(){ bar(4, 5, 6); }'), 'multiple parameter method calls should parse'
