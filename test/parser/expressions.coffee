@@ -26,3 +26,15 @@ assert parses('true ? false ? true : false : true ? false : true'), 'compound te
 assert parses('true || false'), 'logical or should parse'
 assert parses('true && false'), 'logical and should parse'
 #assert parses('!true'), 'logical invert should parse'
+
+# equality
+
+assert parses('a == b'), 'simple equality should parse'
+assert parses('a === b'), 'exact equality should parse'
+
+assert parses('a != b'), 'not equal should parse'
+assert parses('a !== b'), 'not exactly equal should parse'
+assert parses('a < b'), 'less than should parse'
+assert parses('a <= b'), 'less than or equal should parse'
+assert parses('a > b'), 'greater than should parse'
+assert parses('a >= b'), 'greater than or equal should parse'

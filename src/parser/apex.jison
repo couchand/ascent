@@ -351,6 +351,21 @@ expression7
 
 expression6
  : equality_expression
+   { $$ = $equality_expression; }
+ | expression5
+   { $$ = $expression5; }
+ ;
+
+expression5
+ : inequality_expression
+   { $$ = $inequality_expression; }
+ | expression4
+   { $$ = $expression4; }
+ ;
+
+expression4
+ : addition_expression
+ | subtraction_expression
  | primary
    { $$ = $primary; }
  ;
@@ -373,6 +388,30 @@ logical_or_expression
 logical_and_expression
  : expression6 '&&' expression7
    { $$ = { left: $expression6, right: $expression7 }; }
+ ;
+
+equality_expression
+ : expression5 equality_operator expression5
+   { $$ = { left: $expression51, right: $expression52 }; }
+ ;
+
+equality_operator
+ : '=='
+ | '==='
+ | '!='
+ | '!=='
+ ;
+
+inequality_expression
+ : expression4 inequality_operator expression4
+   { $$ = { left: $expression41, right: $expression42 }; }
+ ;
+
+inequality_operator
+ : '<'
+ | '<='
+ | '>'
+ | '>='
  ;
 
 primary
