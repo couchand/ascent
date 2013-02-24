@@ -56,3 +56,8 @@ assert parses('a / b / c / d'), 'coumpound division should parse'
 assert parses('-5'), 'unary negation should parse'
 assert parses('+5'), 'unary nullipotentiation should parse'
 assert parses('!false'), 'unary inversion should parse'
+
+assert parses('++5'), 'prefix increment should parse'
+assert parses('5++'), 'postfix increment should parse'
+assert parses('--5'), 'prefix decrement should parse'
+assert parses('5--'), 'postfix decrement should parse'

@@ -488,6 +488,26 @@ nullipotent_expression
    { $$ = $expression1; }
  ;
 
+prefix_expression
+ : prefix_operator primary
+   { $$ = { expression: $primary }; }
+ ;
+
+postfix_expression
+ : primary postfix_operator
+   { $$ = { expression: $primary }; }
+ ;
+
+prefix_operator
+ : '++'
+ | '--'
+ ;
+
+postfix_operator
+ : '++'
+ | '--'
+ ;
+
 primary
  : identifier
    { $$ = $identifier; }
