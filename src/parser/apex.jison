@@ -411,6 +411,15 @@ expression1
    { $$ = $primary; }
  ;
 
+primary
+ : parenthesized_expression
+   { $$ = $parenthesized_expression; }
+ | identifier
+   { $$ = $identifier; }
+ | value
+   { $$ = $value; }
+ ;
+
 assignment_expression
  : identifier '=' expression
    { $$ = { assignee: $identifier, value: $expression }; }
@@ -510,11 +519,9 @@ postfix_operator
  | '--'
  ;
 
-primary
- : identifier
-   { $$ = $identifier; }
- | value
-   { $$ = $value; }
+parenthesized_expression
+ : '(' expression ')'
+   { $$ = $expression; }
  ;
 
 identifier
