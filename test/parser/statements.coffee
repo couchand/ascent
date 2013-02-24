@@ -60,7 +60,7 @@ assert parses('do {} while(1);'), 'do while loops should parse'
 assert parses('for( ;; ) ;'), 'simple for loops should parse'
 assert parses('for( ;; ) {}'), 'for blocks should parse'
 assert parses('for( Integer i = 5;; ) ;'), 'for initializers should parse'
-assert parses('for( true;; ) ;'), 'for expression initializers should parse'
+assert parses('for( i = 6;; ) ;'), 'for expression initializers should parse'
 assert parses('for( ; true; ) ;'), 'for conditions should parse'
 assert parses('for( ;; false ) ;'), 'for increments should parse'
 

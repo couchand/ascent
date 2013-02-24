@@ -247,8 +247,8 @@ for_initializer
  :
  | declaration
    { $$ = $declaration; }
- | expression
-   { $$ = $expression; }
+ | assignment_expression
+   { $$ = $assignment_expression; }
  ;
 
 for_condition
