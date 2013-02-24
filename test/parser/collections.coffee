@@ -16,6 +16,10 @@ parses = (str) ->
 assert parses('void doFoo(){ List<String> l; }'), 'collections should parse'
 assert parses('void doFoo(){ List<Map<Id, String>> l; }'), 'nested collections should parse'
 
+# constructor calls
+
+assert parses('void doFoo(){ List<String> l = new List<String>(); }'), 'collection constructor invocations should parse'
+
 # properties
 
 assert parses('public List<String> foos;'), 'collections as properties should parse'

@@ -35,6 +35,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "while"                 return 'WHILE';
 "do"                    return 'DO';
 "for"                   return 'FOR';
+"new"                   return 'NEW';
 "||"                    return '||';
 "&&"                    return '&&';
 ";"                     return ';';

@@ -431,8 +431,15 @@ expression1
 primary
  : parenthesized_expression
    { $$ = $parenthesized_expression; }
+ | new_allocation
+   { $$ = $new_allocation; }
  | primary_no_parens
    { $$ = $primary_no_parens; }
+ ;
+
+new_allocation
+ : NEW identifier '(' arg_list ')'
+ | NEW collection_type '(' arg_list ')'
  ;
 
 primary_no_parens
