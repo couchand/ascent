@@ -61,3 +61,7 @@ assert parses('++5'), 'prefix increment should parse'
 assert parses('5++'), 'postfix increment should parse'
 assert parses('--5'), 'prefix decrement should parse'
 assert parses('5--'), 'postfix decrement should parse'
+
+assert not parses('---5'), 'we would like to parse this case and warn, but it would be tough'
+assert parses('- --5'), 'prefix binds tighter'
+assert not parses('-- -5'), 'prefix cannot have space'
