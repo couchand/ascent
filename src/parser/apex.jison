@@ -234,10 +234,10 @@ get_or_set
    { $$ = { accessor: $identifier }; }
  | access_modifier identifier ';'
    { $$ = { accessor: $identifier, modifiers: [$access_modifier] }; }
- | identifier '{' '}'
-   { $$ = { accessor: $identifier, body: [] }; }
- | access_modifier identifier '{' '}'
-   { $$ = { accessor: $identifier, modifiers: [$access_modifier], body: [] }; }
+ | identifier block_statements
+   { $$ = { accessor: $identifier, body: $block_statements }; }
+ | access_modifier identifier block_statements
+   { $$ = { accessor: $identifier, modifiers: [$access_modifier], body: $block_statements }; }
  ;
 
 declaration
