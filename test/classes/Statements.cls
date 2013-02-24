@@ -2,6 +2,11 @@ public class Statements
 {
     public void foobar()
     {
+        for ( Integer j = 4; true; )
+        {
+            String baz = 'bam';
+        }
+
         try
         {
             if ( false )

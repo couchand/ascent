@@ -160,6 +160,8 @@ block_statements
 statements
  : statement
    { $$ = [$statement]; }
+ | statements statement
+   { $$ = $statements; $$.push($statement); }
  ;
 
 statement
