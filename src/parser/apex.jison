@@ -422,7 +422,7 @@ primary
 
 assignment_expression
  : identifier '=' expression
-   { $$ = { assignee: $identifier, value: $expression }; }
+   { $$ = { name: $identifier, value: $expression }; }
  ;
 
 ternary_expression
