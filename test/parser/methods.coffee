@@ -30,3 +30,7 @@ assert parses('protected override void foobar(){}'),
 assert parses('Foo(){}'), 'constructors should parse'
 assert parses('Foo(Integer i){}'), 'constructor parameters should parse'
 assert parses('private Foo(){}'), 'constructor modifiers should parse'
+
+#invocation
+
+assert parses('void doFoo(){ bar(); }'), 'method invocations should parse'

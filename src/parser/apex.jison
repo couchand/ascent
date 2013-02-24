@@ -204,6 +204,8 @@ statement
    { $$ = $block_statements; }
  | assignment_expression ';'
    { $$ = { expression: $assignment_expression }; }
+ | method_call ';'
+   { $$ = { expression: $method_call }; }
  ;
 
 return_statement
@@ -429,10 +431,31 @@ expression1
 primary
  : parenthesized_expression
    { $$ = $parenthesized_expression; }
- | identifier
+ | primary_no_parens
+   { $$ = $primary_no_parens; }
+ ;
+
+primary_no_parens
+ : identifier
    { $$ = $identifier; }
  | value
    { $$ = $value; }
+ | method_call
+   { $$ = $method_call; }
+ ;
+
+method_call
+ : primary_no_parens '(' arg_list ')'
+   { $$ = { callee: $primary_no_parens, argv: $arg_list }; }
+ ;
+
+arg_list
+ :
+   { $$ = []; }
+ | expression
+   { $$ = [$expression]; }
+ | arg_list ',' expression
+   { $$ = $arg_list; $$.push($expression); }
  ;
 
 assignment_expression
