@@ -404,7 +404,9 @@ expression2
 
 expression1
  : prefix_expression
+   { $$ = $prefix_expression; }
  | postfix_expression
+   { $$ = $postfix_expression; }
  | primary
    { $$ = $primary; }
  ;
