@@ -6,6 +6,7 @@ public class Methods
     void doIt(){}
     public override Integer doMore( Integer i, Integer j )
     {
-        bar();
+        System.debug( i );
+        System.debug( j );
     }
 }
