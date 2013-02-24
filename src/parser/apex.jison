@@ -87,15 +87,15 @@ implements
  ;
 
 interface_names
- : type_name
-   { $$ = [$type_name]; }
- | interface_names ',' type_name
-   { $$ = $interface_names; $$.push($type_name); }
+ : identifier
+   { $$ = [$identifier]; }
+ | interface_names ',' identifier
+   { $$ = $interface_names; $$.push($identifier); }
  ;
 
 extends
- : EXTENDS type_name
-   { $$ = [$type_name]; }
+ : EXTENDS identifier
+   { $$ = [$identifier]; }
  ;
 
 class_body
@@ -126,10 +126,10 @@ class_member
  ;
 
 method
- : modifiers type_name identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier, type: $type_name, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
- | type_name identifier '(' parameters ')' block_statements
-   { $$ = { name: $identifier, type: $type_name, modifiers: [], parameters: $parameters, body: $block_statements }; }
+ : modifiers identifier identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
+ | identifier identifier '(' parameters ')' block_statements
+   { $$ = { name: $identifier, type: $identifier, modifiers: [], parameters: $parameters, body: $block_statements }; }
  | modifiers identifier '(' parameters ')' block_statements
    { $$ = { name: $identifier, type: $identifier, modifiers: $modifiers, parameters: $parameters, body: $block_statements }; }
  | identifier '(' parameters ')' block_statements
@@ -146,8 +146,8 @@ parameters
  ;
 
 parameter
- : type_name identifier
-   { $$ = { type: $type_name, name: $identifier }; }
+ : identifier identifier
+   { $$ = { type: $identifier, name: $identifier }; }
  ;
 
 block_statements
@@ -232,6 +232,8 @@ for_initializer
  :
  | declaration
    { $$ = $declaration; }
+ | expression
+   { $$ = $expression; }
  ;
 
 for_condition
@@ -291,8 +293,8 @@ declaration_statement
  ;
 
 declaration
- : type_name declarator
-   { $$ = $declarator; $$.type = $type_name; }
+ : identifier declarator
+   { $$ = $declarator; $$.type = $identifier; }
  ;
 
 declarator
@@ -300,13 +302,6 @@ declarator
    { $$ = { name: $identifier }; }
  | identifier  '=' expression
    { $$ = { name: $identifier, initializer: $expression } }
- ;
-
-type_name
- : identifier
-   { $$ = $identifier; }
- | FQN
-   { $$ = yytext; }
  ;
 
 expression
@@ -318,6 +313,8 @@ expression
 
 identifier
  : IDENTIFIER
+   { $$ = yytext; }
+ | FQN
    { $$ = yytext; }
  ;
 
