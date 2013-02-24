@@ -393,7 +393,18 @@ expression3b
 
 expression2
  : invert_expression
+   { $$ = $invert_expression; }
  | negative_expression
+   { $$ = $negative_expression; }
+ | nullipotent_expression
+   { $$ = $nullipotent_expression; }
+ | expression1
+   { $$ = $expression1; }
+ ;
+
+expression1
+ : prefix_expression
+ | postfix_expression
  | primary
    { $$ = $primary; }
  ;
@@ -460,6 +471,21 @@ multiplication_expression
 division_expression
  : expression2 '/' expression3b
    { $$ = { left: $expression2, right: $expression3b }; }
+ ;
+
+invert_expression
+ : '!' expression2
+   { $$ = { inverse: $expression2 }; }
+ ;
+
+negative_expression
+ : '-' expression1
+   { $$ = { negative: $expression1 }; }
+ ;
+
+nullipotent_expression
+ : '+' expression1
+   { $$ = $expression1; }
  ;
 
 primary

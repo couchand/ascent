@@ -50,3 +50,9 @@ assert parses('a * b'), 'simple multiplication should parse'
 assert parses('a * b * c * d'), 'coumpound multiplication should parse'
 assert parses('a / b'), 'simple division should parse'
 assert parses('a / b / c / d'), 'coumpound division should parse'
+
+# unary operators
+
+assert parses('-5'), 'unary negation should parse'
+assert parses('+5'), 'unary nullipotentiation should parse'
+assert parses('!false'), 'unary inversion should parse'
