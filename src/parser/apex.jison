@@ -181,6 +181,8 @@ statement
    { $$ = $while_statement; }
  | do_while_statement
    { $$ = $do_while_statement; }
+ | for_statement
+   { $$ = $for_statement; }
  | block_statements
    { $$ = $block_statements; }
  ;
@@ -219,6 +221,29 @@ while_statement
 do_while_statement
  : DO block_statements WHILE '(' expression ')' ';'
    { $$ = { condition: $expression, block: $block_statements }; }
+ ;
+
+for_statement
+ : FOR '(' for_initializer ';' for_condition ';' for_increment ')' statement
+   { $$ = { initializer: $for_initializer, condition: $for_condition, increment: $for_increment,  block: $statement } }
+ ;
+
+for_initializer
+ :
+ | declaration
+   { $$ = $declaration; }
+ ;
+
+for_condition
+ :
+ | expression
+   { $$ = $expression; }
+ ;
+
+for_increment
+ :
+ | expression
+   { $$ = $expression; }
  ;
 
 instance_initializer

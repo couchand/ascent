@@ -38,6 +38,14 @@ assert parses('while(1) ;'), 'simple while loops should parse'
 assert parses('while(true) {}'), 'while loop blocks should parse'
 assert parses('do {} while(1);'), 'do while loops should parse'
 
+# for
+
+assert parses('for( ;; ) ;'), 'simple for loops should parse'
+assert parses('for( ;; ) {}'), 'for blocks should parse'
+assert parses('for( Integer i = 5;; ) ;'), 'for initializers should parse'
+assert parses('for( ; true; ) ;'), 'for conditions should parse'
+assert parses('for( ;; false ) ;'), 'for increments should parse'
+
 # try/catch
 
 assert parses('try {} catch (Exception ex){}'), 'try catch should parse'

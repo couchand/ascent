@@ -33,6 +33,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "else"                  return 'ELSE';
 "while"                 return 'WHILE';
 "do"                    return 'DO';
+"for"                   return 'FOR';
 ";"                     return ';';
 ","                     return ',';
 "."                     return '.';
