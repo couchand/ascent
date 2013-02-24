@@ -263,10 +263,10 @@ static_initializer
  ;
 
 property
- : modifiers declaration_statement
-   { $$ = $declaration_statement; $$.modifiers = $modifiers; }
- | declaration_statement
-   { $$ = $declaration_statement; }
+ : modifiers declaration ';'
+   { $$ = $declaration; $$.modifiers = $modifiers; }
+ | declaration ';'
+   { $$ = $declaration; }
  | modifiers declaration '{' get_and_set '}'
    { $$ = $declaration; $$.modifiers = $modifiers; $$.get = $get_and_set.get; $$.set = $get_and_set.set; }
  | declaration '{' get_and_set '}'
@@ -294,6 +294,8 @@ get_or_set
 declaration_statement
  : declaration ';'
    { $$ = $declaration; }
+ | FINAL declaration ';'
+   { $$ = $declaration; $$.modifiers = ['final']; }
  ;
 
 declaration

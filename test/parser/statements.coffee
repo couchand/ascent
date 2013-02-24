@@ -29,6 +29,8 @@ assert parses('continue;'), 'continue statements should parse'
 
 assert parses('Integer i;'), 'simple declarations should parse'
 assert parses('Integer i = 42;'), 'initializers should parse'
+assert parses('final Integer i;'), 'final declarations should parse'
+assert parses('final Integer i = 42;'), 'final initializers should parse'
 
 # if
 
