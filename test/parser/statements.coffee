@@ -16,6 +16,10 @@ parses = (str) ->
 assert parses(';'), 'an empty statement should parse'
 assert parses(';;;'), 'multiple empty statements should parse'
 
+# expression statement
+
+assert parses('true;'), 'expression statements should parse'
+
 # break and continue
 
 assert parses('break;'), 'break statements should parse'

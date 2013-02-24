@@ -187,6 +187,8 @@ statement
    { $$ = $for_statement; }
  | block_statements
    { $$ = $block_statements; }
+ | expression ';'
+   { $$ = { expression: $expression }; }
  ;
 
 try_statement
