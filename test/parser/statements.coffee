@@ -25,6 +25,13 @@ assert parses('continue;'), 'continue statements should parse'
 assert parses('Integer i;'), 'simple declarations should parse'
 assert parses('Integer i = 42;'), 'initializers should parse'
 
+# if
+
+assert parses('if (true) ;'), 'simple if statements should parse'
+assert parses('if (true) ; else ;'), 'else should parse'
+assert parses('if (true) {} else {}'), 'if else statement blocks should parse'
+assert parses('if (true) {} else if (false) {} else {}'), 'else if should parse'
+
 # try/catch
 
 assert parses('try {} catch (Exception ex){}'), 'try catch should parse'

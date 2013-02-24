@@ -180,6 +180,10 @@ statement
    { $$ = $declaration; }
  | try_statement
    { $$ = $try_statement; }
+ | if_statement
+   { $$ = $if_statement; }
+ | block_statements
+   { $$ = $block_statements; }
  ;
 
 try_statement
@@ -199,6 +203,13 @@ catches
 catch_clause
  : CATCH '(' parameter ')' block_statements
    { $$ = { parameter: $parameter, block: $block_statements }; }
+ ;
+
+if_statement
+ : IF '(' expression ')' statement
+   { $$ = { condition: $expression, block: $statement }; }
+ | IF '(' expression ')' statement ELSE statement
+   { $$ = { condition: $expression, block: $statement1, elseBlock: $statement2 }; }
  ;
 
 instance_initializer
