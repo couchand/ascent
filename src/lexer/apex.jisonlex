@@ -45,6 +45,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 {digit}+"."{digit}+     return 'DECLITERAL';
 {digit}+"L"             return 'LNGLITERAL';
 {digit}+                return 'INTLITERAL';
+{id}("."{id})+          return 'FQN';
 {id}                    return 'IDENTIFIER';
 \s+                     /* skip whitepace */
 <<EOF>>                 return 'EOF';

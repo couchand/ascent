@@ -304,9 +304,9 @@ declarator
 
 fqn
  : identifier
-   { $$ = [$identifier]; }
- | fqn '.' identifier
-   { $$ = $fqn; $$.push( $identifier ); }
+   { $$ = $identifier; }
+ | FQN
+   { $$ = yytext; }
  ;
 
 expression
