@@ -36,6 +36,7 @@ assert parses('if (true) {} else if (false) {} else {}'), 'else if should parse'
 
 assert parses('while(1) ;'), 'simple while loops should parse'
 assert parses('while(true) {}'), 'while loop blocks should parse'
+assert parses('do {} while(1);'), 'do while loops should parse'
 
 # try/catch
 

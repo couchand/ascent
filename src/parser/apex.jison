@@ -179,6 +179,8 @@ statement
    { $$ = $if_statement; }
  | while_statement
    { $$ = $while_statement; }
+ | do_while_statement
+   { $$ = $do_while_statement; }
  | block_statements
    { $$ = $block_statements; }
  ;
@@ -212,6 +214,11 @@ if_statement
 while_statement
  : WHILE '(' expression ')' statement
    { $$ = { condition: $expression, block: $statement }; }
+ ;
+
+do_while_statement
+ : DO block_statements WHILE '(' expression ')' ';'
+   { $$ = { condition: $expression, block: $block_statements }; }
  ;
 
 instance_initializer
