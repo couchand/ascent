@@ -379,7 +379,21 @@ expression4b
 
 expression3
  : multiplication_expression
- | division_expression
+   { $$ = $multiplication_expression; }
+ | expression3b
+   { $$ = $expression3b; }
+ ;
+
+expression3b
+ : division_expression
+   { $$ = $division_expression; }
+ | expression2
+   { $$ = $expression2; }
+ ;
+
+expression2
+ : invert_expression
+ | negative_expression
  | primary
    { $$ = $primary; }
  ;
@@ -436,6 +450,16 @@ addition_expression
 subtraction_expression
  : expression3 '-' expression4b
    { $$ = { left: $expression3, right: $expression4b }; }
+ ;
+
+multiplication_expression
+ : expression3b '*' expression3
+   { $$ = { left: $expression3b, right: $expression3 }; }
+ ;
+
+division_expression
+ : expression2 '/' expression3b
+   { $$ = { left: $expression2, right: $expression3b }; }
  ;
 
 primary

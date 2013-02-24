@@ -45,3 +45,8 @@ assert parses('a + b'), 'simple addition should parse'
 assert parses('a + b + c + d'), 'compound addition should parse'
 assert parses('a - b'), 'simple subtraction should parse'
 assert parses('a - b - c - d'), 'coumpound subtraction should parse'
+
+assert parses('a * b'), 'simple multiplication should parse'
+assert parses('a * b * c * d'), 'coumpound multiplication should parse'
+assert parses('a / b'), 'simple division should parse'
+assert parses('a / b / c / d'), 'coumpound division should parse'
