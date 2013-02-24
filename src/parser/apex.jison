@@ -286,10 +286,15 @@ get_or_set
  ;
 
 declaration
- : fqn identifier
-   { $$ = { type: $fqn, name: $identifier }; }
- | fqn identifier  '=' expression
-   { $$ = { type: $fqn, name: $identifier, initializer: $expression } }
+ : fqn declarator
+   { $$ = $declarator; $$.type = $fqn; }
+ ;
+
+declarator
+ : identifier
+   { $$ = { name: $identifier }; }
+ | identifier  '=' expression
+   { $$ = { name: $identifier, initializer: $expression } }
  ;
 
 fqn
