@@ -1,12 +1,14 @@
 #!/bin/bash
 
-if [ "$1" == "" ] ; then
-  $1="false"
+DEBUG="$1"
+
+if [ "$DEBUG" == "" ] ; then
+    DEBUG="false"
 fi
 
 echo "building parser"
 echo "> jison -o dst/apex.js src/parser/apex.jison src/lexer/apex.jisonlex"
-jison --debug "$1" -o dst/apex.js src/parser/apex.jison src/lexer/apex.jisonlex
+jison --debug "$DEBUG" -o dst/apex.js src/parser/apex.jison src/lexer/apex.jisonlex
 echo "patching cli"
 echo "> patch dst/apex.js cli.patch"
 patch dst/apex.js cli.patch
