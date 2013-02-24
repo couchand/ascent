@@ -19,6 +19,7 @@ assert parses('void doFoo(){ List<Map<Id, String>> l; }'), 'nested collections s
 # constructor calls
 
 assert parses('void doFoo(){ List<String> l = new List<String>(); }'), 'collection constructor invocations should parse'
+assert parses("void doFoo(){ return new List<String>{ 'foo', 'bar', 'baz' }; }"), 'collection initializers should parse'
 
 # properties
 

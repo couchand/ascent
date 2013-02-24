@@ -440,6 +440,13 @@ primary
 new_allocation
  : NEW identifier '(' arg_list ')'
  | NEW collection_type '(' arg_list ')'
+ | NEW collection_type '{' initialization_list '}'
+ ;
+
+initialization_list
+ :
+ | expression
+ | initialization_list ',' expression
  ;
 
 primary_no_parens
