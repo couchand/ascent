@@ -171,8 +171,8 @@ statement
    { $$ = ['continue']; }
  | THROW expression ';'
    { $$ = { throws: $expression }; }
- | declaration ';'
-   { $$ = $declaration; }
+ | declaration_statement
+   { $$ = $declaration_statement; }
  | try_statement
    { $$ = $try_statement; }
  | if_statement
@@ -257,10 +257,10 @@ static_initializer
  ;
 
 property
- : modifiers declaration ';'
-   { $$ = $declaration; $$.modifiers = $modifiers; }
- | declaration ';'
-   { $$ = $declaration; }
+ : modifiers declaration_statement
+   { $$ = $declaration_statement; $$.modifiers = $modifiers; }
+ | declaration_statement
+   { $$ = $declaration_statement; }
  | modifiers declaration '{' get_and_set '}'
    { $$ = $declaration; $$.modifiers = $modifiers; $$.get = $get_and_set.get; $$.set = $get_and_set.set; }
  | declaration '{' get_and_set '}'
@@ -283,6 +283,11 @@ get_or_set
    { $$ = { accessor: $identifier, body: $block_statements }; }
  | access_modifier identifier block_statements
    { $$ = { accessor: $identifier, modifiers: [$access_modifier], body: $block_statements }; }
+ ;
+
+declaration_statement
+ : declaration ';'
+   { $$ = $declaration; }
  ;
 
 declaration
