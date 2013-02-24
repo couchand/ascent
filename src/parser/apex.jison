@@ -189,8 +189,8 @@ statement
    { $$ = $for_statement; }
  | block_statements
    { $$ = $block_statements; }
- | expression ';'
-   { $$ = { expression: $expression }; }
+ | assignment_expression ';'
+   { $$ = { expression: $assignment_expression }; }
  ;
 
 return_statement

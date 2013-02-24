@@ -21,9 +21,9 @@ assert parses(';;;'), 'multiple empty statements should parse'
 assert parses('{}'), 'an empty block should parse'
 assert parses('{;}'), 'a non-empty block should parse'
 
-# expression statement
+# assignment expression
 
-assert parses('true;'), 'expression statements should parse'
+assert parses('foo = 5;'), 'assignment expressions should parse'
 
 # break and continue
 

@@ -7,7 +7,7 @@ assert = (val, msg) ->
 
 parses = (str) ->
   try
-    p.parse "public class Foo { void doFoo(){ #{str}; } }"
+    p.parse "public class Foo { void doFoo(){ return #{str}; } }"
   catch error
     no
 
