@@ -23,3 +23,7 @@ assert parses('public List<String> foos;'), 'collections as properties should pa
 # parameters
 
 assert parses('void doFoo(List<String> strs) {}'), 'collections as method params should parse'
+
+# return type
+
+assert parses('List<String> getNames() {}'), 'collections as return types should parse'
