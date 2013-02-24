@@ -322,6 +322,18 @@ declarator
  ;
 
 expression
+ : assignment_expression
+   { $$ = $assignment_expression; }
+ | primary
+   { $$ = $primary; }
+ ;
+
+assignment_expression
+ : identifier '=' expression
+   { $$ = { assignee: $identifier, value: $expression }; }
+ ;
+
+primary
  : identifier
    { $$ = $identifier; }
  | value

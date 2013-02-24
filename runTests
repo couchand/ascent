@@ -11,3 +11,4 @@ coffee test/parser/numbers.coffee
 coffee test/parser/properties.coffee
 coffee test/parser/strings.coffee
 coffee test/parser/statements.coffee
+coffee test/parser/expressions.coffee
