@@ -50,6 +50,13 @@ assert parses('a * b * c * d'), 'coumpound multiplication should parse'
 assert parses('a / b'), 'simple division should parse'
 assert parses('a / b / c / d'), 'coumpound division should parse'
 
+# shorthand assignment
+
+assert parses('a += b'), 'addition assignment should parse'
+assert parses('a -= b'), 'subtraction assignment should parse'
+assert parses('a *= b'), 'multiplication assignment should parse'
+assert parses('a /= b'), 'division assignment should parse'
+
 # unary operators
 
 assert parses('-5'), 'unary negation should parse'

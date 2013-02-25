@@ -497,8 +497,16 @@ arg_list
  ;
 
 assignment_expression
- : identifier '=' expression
-   { $$ = { name: $identifier, value: $expression }; }
+ : identifier assignment_operator expression
+   { $$ = { operator: $assignment_operator, name: $identifier, value: $expression }; }
+ ;
+
+assignment_operator
+ : '='
+ | '+='
+ | '-='
+ | '*='
+ | '/='
  ;
 
 ternary_expression

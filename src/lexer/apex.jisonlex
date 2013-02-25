@@ -5,6 +5,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "//".*                  /* ignore comment */
 "/*"(\n|.)*"*/"         /* ignore block comment */
 "'"(\\\')?(\n|([^\\]|[^\\]\\\\)\\\'|[^'])*"'"   return 'STRLITERAL';
+"["(\t|\n|[ ])*([sS][eE][lL][eE][cC][tT])[^\]]*"]"  return 'IDENTIFIER';
 "public"                return 'PUBLIC';
 "private"               return 'PRIVATE';
 "protected"             return 'PROTECTED';
@@ -49,6 +50,10 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "!="                    return '!=';
 "<="                    return '<=';
 ">="                    return '>=';
+"+="                    return '+=';
+"-="                    return '-=';
+"*="                    return '*=';
+"/="                    return '/=';
 "<"                     return '<';
 ">"                     return '>';
 "="                     return '=';
