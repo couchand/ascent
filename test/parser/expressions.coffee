@@ -25,7 +25,6 @@ assert parses('true ? false ? true : false : true ? false : true'), 'compound te
 
 assert parses('true || false'), 'logical or should parse'
 assert parses('true && false'), 'logical and should parse'
-#assert parses('!true'), 'logical invert should parse'
 
 # equality
 
