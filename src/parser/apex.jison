@@ -584,6 +584,8 @@ parenthesized_expression
 collection_type
  : identifier '<' nested_types '>'
    { $$ = { container: $identifier, contains: $nested_types }; }
+ | identifier '[' ']'
+   { $$ = { container: '[]', contains: $identifier }; }
  ;
 
 nested_types
