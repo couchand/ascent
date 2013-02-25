@@ -1,3 +1,12 @@
+apex parsing
+============
+
+parse status
+------------
+
+ * ap: 66/108
+ * hds: 119/174
+
 outstanding items
 -----------------
 
