@@ -25,6 +25,10 @@ assert parses('{;}'), 'a non-empty block should parse'
 
 assert parses('foo = 5;'), 'assignment expressions should parse'
 
+# increment expression
+
+assert parses('foo++;'), 'increment expression statements should parse'
+
 # break and continue
 
 assert parses('break;'), 'break statements should parse'

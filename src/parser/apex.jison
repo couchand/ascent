@@ -204,6 +204,10 @@ statement
    { $$ = { block: $block_statements, statement: 'block' }; }
  | assignment_expression ';'
    { $$ = { expression: $assignment_expression, statement: 'assignment' }; }
+ | prefix_expression ';'
+   { $$ = { expression: $prefix_expression, statement: 'prefix' }; }
+ | postfix_expression ';'
+   { $$ = { expression: $postfix_expression, statement: 'postfix' }; }
  | method_call ';'
    { $$ = { expression: $method_call, statement: 'method call' }; }
  ;
