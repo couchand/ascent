@@ -5,6 +5,8 @@ public class Collections
 
     public static Set<Integer> goodNumbers = new Set<Integer>{ 1, 2, 3, 4, 5, 6 };
 
+    public static Integer[] arrayList;
+
     public static void printAll( Integer numTimes )
     {
         for ( Integer i = 0; i < numTimes; i++ )
