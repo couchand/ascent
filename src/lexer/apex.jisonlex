@@ -15,7 +15,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 [oO]"verride"              return 'OVERRIDE';
 [tT]"est"[mM]"ethod"            return 'TESTMETHOD';
 [sS]"tatic"                return 'STATIC';
-[fF]"inal"                 return 'FINAL';
+[fF]"inally"               return 'FINALLY';
+[fF][iI][nN][aA][lL]                 return 'FINAL';
 [tT]"ransient"             return 'TRANSIENT';
 [wW]"ith"\s+[sS]"haring"      return 'WITHSHARING';
 [wW]"ithout"\s+[sS]"haring"   return 'WITHOUTSHARING';
@@ -30,9 +31,8 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 [rR]"eturn"                return 'RETURN';
 [tT]"ry"                   return 'TRY';
 [cC]"atch"                 return 'CATCH';
-[fF]"inally"               return 'FINALLY';
 [tT]"hrow"                 return 'THROW';
-[iI]"f"                    return 'IF';
+[iI][fF]                    return 'IF';
 [eE]"lse"                  return 'ELSE';
 [wW]"hile"                 return 'WHILE';
 [dD]"o"                    return 'DO';

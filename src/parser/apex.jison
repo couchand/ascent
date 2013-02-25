@@ -542,8 +542,8 @@ arg_list
  ;
 
 assignment_expression
- : identifier assignment_operator expression
-   { $$ = { operator: $assignment_operator, name: $identifier, value: $expression }; }
+ : expression2 assignment_operator expression
+   { $$ = { operator: $assignment_operator, name: $expression2, value: $expression }; }
  ;
 
 assignment_operator
