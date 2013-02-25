@@ -34,3 +34,7 @@ assert parses('void doFoo(List<String> strs) {}'), 'collections as method params
 # return type
 
 assert parses('List<String> getNames() {}'), 'collections as return types should parse'
+
+# array indexing
+
+assert parses('Integer bar( List<Integer> baz ) { return baz[0]; }'), 'array indexes should parse'

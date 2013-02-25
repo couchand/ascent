@@ -424,6 +424,13 @@ expression1
    { $$ = $prefix_expression; }
  | postfix_expression
    { $$ = $postfix_expression; }
+ | expression0
+   { $$ = $expression0; }
+ ;
+
+expression0
+ : new_allocation
+   { $$ = $new_allocation; }
  | primary
    { $$ = $primary; }
  ;
@@ -431,8 +438,6 @@ expression1
 primary
  : parenthesized_expression
    { $$ = $parenthesized_expression; }
- | new_allocation
-   { $$ = $new_allocation; }
  | primary_no_parens
    { $$ = $primary_no_parens; }
  ;
@@ -459,8 +464,22 @@ primary_no_parens
    { $$ = $identifier; }
  | value
    { $$ = $value; }
+ | field_access
+   { $$ = $field_access; }
+ | array_access
+   { $$ = $array_access; }
  | method_call
    { $$ = $method_call; }
+ ;
+
+field_access
+ : primary '.' identifier
+   { $$ = { receiver: $primary, field: $identifier }; }
+ ;
+
+array_access
+ : primary '[' expression ']'
+   { $$ = { receiver: $primary, index: $expression }; }
  ;
 
 method_call

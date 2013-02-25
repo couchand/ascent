@@ -71,3 +71,8 @@ assert parses('public class Foo implements Bar extends Baz {}'),
   'the order of implements and extends should not matter'
 assert parses('public class Foo extends Bar implements Baz {}'),
   'the order of implements and extends should not matter'
+
+# field references
+
+assert parses('public class Foo { void bar(){ return baz().bam(); } }'),
+  'field references should parse'
