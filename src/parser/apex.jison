@@ -60,12 +60,16 @@ modifier
    { $$ = 'without sharing'; }
  | OVERRIDE
    { $$ = 'override'; }
+ | TESTMETHOD
+   { $$ = 'testMethod'; }
  | STATIC
    { $$ = 'static'; }
  | FINAL
    { $$ = 'final'; }
  | TRANSIENT
    { $$ = 'transient'; }
+ | ANNOTATION
+   { $$ = yytext; }
  ;
 
 class_taxonomy

@@ -13,6 +13,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "abstract"              return 'ABSTRACT';
 "virtual"               return 'VIRTUAL';
 "override"              return 'OVERRIDE';
+"testMethod"            return 'TESTMETHOD';
 "static"                return 'STATIC';
 "final"                 return 'FINAL';
 "transient"             return 'TRANSIENT';
@@ -79,6 +80,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 {digit}+"."{digit}+     return 'DECLITERAL';
 {digit}+"L"             return 'LNGLITERAL';
 {digit}+                return 'INTLITERAL';
+"@"{id}                 return 'ANNOTATION';
 {id}("."{id})+          return 'FQN';
 {id}                    return 'IDENTIFIER';
 \s+                     /* skip whitepace */

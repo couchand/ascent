@@ -76,3 +76,21 @@ assert parses('public class Foo extends Bar implements Baz {}'),
 
 assert parses('public class Foo { void bar(){ return baz().bam(); } }'),
   'field references should parse'
+
+# annotations
+
+assert parses('@isTest public class Foo {}'),
+  'isTest class annotation should parse'
+assert parses('@deprecated public class Foo {}'),
+  'deprecated class annotation should parse'
+assert parses('@ReadOnly public class Foo{}'),
+  'read only annotation should parse'
+#assert parses("@RestResource(urlMapping='/foobar') global class Foo {}"),
+#  'rest resource annotation should parse'
+
+assert parses('public class Foo { @future void bar(){} }'),
+  'future method anotation should parse'
+assert parses('public class Foo { @isTest void bar(){} }'),
+  'istest method annotation should parse'
+assert parses('public class Foo { testMethod void bar(){} }'),
+  'testmethod modifier should parse'
