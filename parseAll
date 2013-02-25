@@ -1,0 +1,31 @@
+#!/usr/local/bin/coffee
+# parse all files, reporting success rate and errors
+
+fs = require 'fs'
+
+p = require './dst/apex'
+
+main = (argv) ->
+  if !argv[1]?
+    console.log "Usage: #{argv[0]} FILE [ FILE ... ]"
+    return
+
+  all_files = argv.slice 1
+  successes = 0
+  attempts = 0
+
+  for file in all_files
+    name = file.match(/\/([^\/]+)\.cls$/)?[1]
+    continue unless name
+    attempts++
+    cls = fs.readFileSync(file).toString()
+    console.log "now parsing #{name}"
+    try
+      p.parse cls
+      successes++
+    catch err
+      console.error "File #{file}: #{err}"
+
+  console.log "Successfully parsed #{successes} out of #{attempts}"
+
+main process.argv.slice 1
