@@ -69,7 +69,9 @@ modifier
  | TRANSIENT
    { $$ = 'transient'; }
  | ANNOTATION
-   { $$ = yytext; }
+   { $$ = { annotation: yytext }; }
+ | ANNOTATION '(' identifier '=' value ')'
+   { $$ = { annotation: yytext, option: $identifier, value: $value }; }
  ;
 
 class_taxonomy

@@ -81,12 +81,14 @@ assert parses('public class Foo { void bar(){ return baz().bam(); } }'),
 
 assert parses('@isTest public class Foo {}'),
   'isTest class annotation should parse'
+assert parses('@isTest(SeeAllData=true) public class Foo {}'),
+  'isTest with seealldata class annotation should parse'
 assert parses('@deprecated public class Foo {}'),
   'deprecated class annotation should parse'
 assert parses('@ReadOnly public class Foo{}'),
   'read only annotation should parse'
-#assert parses("@RestResource(urlMapping='/foobar') global class Foo {}"),
-#  'rest resource annotation should parse'
+assert parses("@RestResource(urlMapping='/foobar') global class Foo {}"),
+  'rest resource annotation should parse'
 
 assert parses('public class Foo { @future void bar(){} }'),
   'future method anotation should parse'
