@@ -3,7 +3,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 
 %%
 "//".*                  /* ignore comment */
-"/*"(\n|\r|.)*"*/"         /* ignore block comment */
+"/*"(\n|\r|.)*?"*/"         /* ignore block comment */
 "'"(\\\')?(\n|([^\\]|[^\\]\\\\)\\\'|[^'])*"'"   return 'STRLITERAL';
 "["(\t|\n|[ ])*([sS][eE][lL][eE][cC][tT])[^\]]*"]"  return 'IDENTIFIER';
 [pP]"ublic"                return 'PUBLIC';
