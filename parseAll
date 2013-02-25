@@ -24,7 +24,7 @@ main = (argv) ->
       p.parse cls
       successes++
     catch err
-      console.error "File #{file}: #{err}"
+      console.error "File #{file}: #{err}\n"
 
   console.log "Successfully parsed #{successes} out of #{attempts}"
 
