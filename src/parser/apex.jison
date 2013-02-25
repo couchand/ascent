@@ -210,6 +210,41 @@ statement
    { $$ = { expression: $postfix_expression, statement: 'postfix' }; }
  | method_call ';'
    { $$ = { expression: $method_call, statement: 'method call' }; }
+ | dml_statement
+   { $$ = $dml_statement; $$.statement = 'dml'; }
+ ;
+
+dml_statement
+ : regular_dml_statement ';'
+   { $$ = $regular_dml_statement; }
+ | upsert_statement ';'
+   { $$ = $upsert_statement; }
+ | merge_statement ';'
+   { $$ = $merge_statement; }
+ ;
+
+regular_dml_statement
+ : dml_keyword expression
+   { $$ = { operation: $dml_keyword, expression: $expression }; }
+ ;
+
+dml_keyword
+ : INSERT
+ | UPDATE
+ | DELETE
+ | UNDELETE
+ ;
+
+upsert_statement
+ : UPSERT expression
+   { $$ = { operation: 'upsert', expression: $expression }; }
+ | UPSERT expression identifier
+   { $$ = { operation: 'upsert', expression: $expression, externalId: $identifier }; }
+ ;
+
+merge_statement
+ : MERGE expression expression
+   { $$ = { operation: 'merge', left: $expression1, right: $expression2 }; }
  ;
 
 return_statement

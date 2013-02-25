@@ -79,3 +79,13 @@ assert parses('try {} catch (Exception ex){} finally {}'), 'finally should parse
 # throw
 
 assert parses('throw myEx;'), 'throw statements should parse'
+
+# dml
+
+assert parses('insert accounts;'), 'insert should parse'
+assert parses('update accounts;'), 'update should parse'
+assert parses('delete accounts;'), 'delete should parse'
+assert parses('undelete accounts;'), 'undelete should parse'
+assert parses('merge bigAccount smallAccount;'), 'merge should parse'
+assert parses('upsert accounts;'), 'upsert should parse'
+assert parses('upsert accounts sugarId;'), 'upsert with external id should parse'

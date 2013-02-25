@@ -37,6 +37,12 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "do"                    return 'DO';
 "for"                   return 'FOR';
 "new"                   return 'NEW';
+"insert"                return 'INSERT';
+"update"                return 'UPDATE';
+"delete"                return 'DELETE';
+"undelete"              return 'UNDELETE';
+"merge"                 return 'MERGE';
+"upsert"                return 'UPSERT';
 "||"                    return '||';
 "&&"                    return '&&';
 ";"                     return ';';
