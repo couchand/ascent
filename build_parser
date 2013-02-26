@@ -7,9 +7,9 @@ if [ "$DEBUG" == "" ] ; then
 fi
 
 echo "building parser"
-echo "> jison -o dst/apex.js src/parser/apex.jison src/lexer/apex.jisonlex"
-jison --debug "$DEBUG" -o dst/apex.js src/parser/apex.jison src/lexer/apex.jisonlex
+echo "> jison -o dst/ascent.js src/parser/ascent.jison src/lexer/ascent.jisonlex"
+jison --debug "$DEBUG" -o dst/ascent.js src/parser/ascent.jison src/lexer/ascent.jisonlex
 echo "patching cli"
-echo "> patch dst/apex.js cli.patch"
-patch dst/apex.js cli.patch
+echo "> patch dst/ascent.js cli.patch"
+patch dst/ascent.js cli.patch
 echo "success!"

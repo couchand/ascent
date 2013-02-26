@@ -1,6 +1,6 @@
 # tests for fully-qualified names
 
-p = require '../../dst/apex.js'
+p = require '../../dst/ascent.js'
 
 assert = (val, msg) ->
   throw new Error msg if !val

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "parsing $1"
-node dst/apex.js $1
+node dst/ascent.js $1

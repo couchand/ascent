@@ -3,7 +3,7 @@
 
 fs = require 'fs'
 
-p = require './dst/apex'
+p = require './dst/ascent'
 
 main = (argv) ->
   if !argv[1]?
