@@ -1,5 +1,28 @@
-apex parsing
-============
+ascent parser
+=============
+
+ascent is a language similar to apex.
+
+ * introduction
+ * parse status
+ * outstanding items
+ * dev dependencies
+
+introduction
+------------
+
+build the parser with
+
+```bash
+> ./build_parser
+```
+
+parse files with
+
+```javascript
+ascent = require('./dst/ascent.js');
+var ast = ascent.parse(src_file);
+```
 
 parse status
 ------------
@@ -16,3 +39,10 @@ outstanding items
  * enums
  * compound declarations
  * system.runas
+
+dev dependencies
+----------------
+
+ * node 0.8.x
+ * jison
+ * coffeescript
