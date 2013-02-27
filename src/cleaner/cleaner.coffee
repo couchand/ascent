@@ -13,18 +13,16 @@ cleanLine = (line) ->
   clean = ''
   for char in line.split ''
     if escape_stack.length
+      prev = escape_stack.pop()
       if state is quoting
-        prev = escape_stack.pop()
         clean += prev + char
       else if state is commenting
-        prev = escape_stack.pop()
         if char is '/'
           state = ready
           clean += '  '
         else
           clean += '  '
       else # if state is ready
-        prev = escape_stack.pop()
         switch char
           when '*'
             clean += '  '
