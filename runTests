@@ -1,8 +1,9 @@
 #!/bin/bash
 
+coffee test/cleaner/comments.coffee
+
 coffee test/parser/booleans.coffee
 coffee test/parser/classes.coffee
-coffee test/parser/comments.coffee
 coffee test/parser/inner_classes.coffee
 coffee test/parser/initializer.coffee
 coffee test/parser/methods.coffee
