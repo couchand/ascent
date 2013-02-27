@@ -14,7 +14,8 @@ cleanLine = (line) ->
   for char in line.split ''
     if state is quoting
       if escape_stack.length
-        clean += escape_stack.pop() + char
+        prev = escape_stack.pop()
+        clean += prev + char
       else
         switch char
           when '\\'
@@ -26,8 +27,8 @@ cleanLine = (line) ->
             clean += char
     else if state is commenting
       if escape_stack.length
+        prev = escape_stack.pop()
         if char is '/'
-          escape_stack.pop()
           state = ready
           clean += '  '
         else
@@ -39,19 +40,18 @@ cleanLine = (line) ->
           clean += ' '
     else # if state is ready
       if escape_stack.length
+        prev = escape_stack.pop()
         switch char
           when '*'
-            escape_stack.pop()
             clean += '  '
             state = commenting
           when '/'
-            escape_stack.pop()
             return clean
           when '\''
-            clean += escape_stack.pop() + char
+            clean += prev + char
             state = quoting
           else
-            clean += escape_stack.pop() + char
+            clean += prev + char
       else
         switch char
           when '/'
