@@ -47,21 +47,22 @@ class Commenting
     else
       [' ', @, no]
 
-#class Quoting
-#  constructor: ->
-#  handleEscaped: (prev, char) ->
-#    # this is clearly a bug
-#    [prev + char, @]
-#  handlePlain: (char) ->
-#    when '\\'
-#      ['', @, char]
-#    when '\''
-#      [char, ready, no]
-#    else
-#      [char, @, no]
+class Quoting
+  constructor: ->
+  handleEscaped: (prev, char) ->
+    [prev + char, @]
+  handlePlain: (char) ->
+    switch char
+      when '\\'
+        ['', @, char]
+      when '\''
+        [char, ready, no]
+      else
+        [char, @, no]
 
 ready = new Ready()
 commenting = new Commenting()
+quoting = new Quoting()
 
 state = ready
 

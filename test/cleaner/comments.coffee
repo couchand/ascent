@@ -34,6 +34,13 @@ assertCleans 'public class Foobar{\n}',
   'public class Foobar{// this is \\\'a class\n}',
   'escaped quotes in comments should be fine'
 
+assertCleans 'public class Foobar{\n    String baz = \'// this looks like a comment\';\n}',
+  'public class Foobar{\n    String baz = \'// this looks like a comment\';\n}',
+  'comment-like things in string literals should be ignored'
+assertCleans 'public class Foobar{\n    String baz = \'\';\n}',
+  'public class Foobar{\n    String baz = \'\';// this IS a comment\n}',
+  'comments after string literals should not be ignored'
+
 # multi-liners
 
 assertCleans '       \n  \n \n       \npublic class Foobar{}',
@@ -61,3 +68,13 @@ assertCleans 'public class Foobar{                    \n  }',
 assertCleans 'public class Foobar{                    \n  }',
   'public class Foobar{/* this is \\\'a class\n*/}',
   'escaped quotes in multi-line comments should be fine'
+
+assertCleans 'public class Foobar{\n    String baz = \'/* this looks like a comment */\';\n}',
+  'public class Foobar{\n    String baz = \'/* this looks like a comment */\';\n}',
+  'multi-line comment-like things in string literals should be ignored'
+assertCleans 'public class Foobar{\n    String baz = \'/* this half looks like a comment\';\n}',
+  'public class Foobar{\n    String baz = \'/* this half looks like a comment\';\n}',
+  'multi-line comment-like things in string literals should be ignored'
+assertCleans 'public class Foobar{\n    String baz = \'\';                       \n}',
+  'public class Foobar{\n    String baz = \'\';/* this is a comment */\n}',
+  'multi-line comments after string literals should be cleaned'
