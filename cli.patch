@@ -10,7 +10,7 @@
 >   } // end function
 > 
 >   var ret = _performAction.call(this, yytext, yyleng, yylineno, yy, yystate, $$, _$);
->   var $0 = $$.length - 1;
+>   var $0 = $$.length - 2;
 >   if ( typeof this.$ === 'object' ) {
 >     this.$.position = _$[$0];
 >   }
