@@ -51,3 +51,13 @@ assertCleans 'public class Foobar                    {}',
 assertCleans 'public class Foobar{                  \n  }',
   'public class Foobar{/* this is a class\n*/}',
   'multi-line comments in the body should parse'
+
+assertCleans 'public class Foobar{                     \n  }',
+  'public class Foobar{/* this isn\'t a class\n*/}',
+  'unmatched quotes in multi-line comments should be fine'
+assertCleans 'public class Foobar{                    \n  }',
+  'public class Foobar{/* \'this is a class\'\n*/}',
+  'matched quotes in multi-line comments should be fine'
+assertCleans 'public class Foobar{                    \n  }',
+  'public class Foobar{/* this is \\\'a class\n*/}',
+  'escaped quotes in multi-line comments should be fine'
