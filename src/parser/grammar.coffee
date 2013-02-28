@@ -4,7 +4,7 @@
 # the dsl here is (of course) inspired by coffeescript's
 o = (patternString, action) ->
   patternString = patternString.replace /\s{2,}/g, ' '
-  return [patternString, "$$ = $1;"] unless action
+  return [patternString, "$$ = yytext;"] unless action
   return [patternString, "$$ = #{action};"]
 
 grammar =
@@ -29,6 +29,33 @@ grammar =
       '{ name: $identifier, modifiers: [], taxonomy: $class_taxonomy }'
   ]
 
+  modifiers: [
+    o 'modifier', '[$modifier]'
+    o 'modifiers modifier', '$modifiers; $$.push( $modifier )'
+  ]
+
+  access_modifier: [
+    o 'PRIVATE'
+    o 'PROTECTED'
+    o 'PUBLIC'
+    o 'GLOBAL'
+  ]
+
+  modifier: [
+    o 'access_modifier', '$1'
+    o 'VIRTUAL'
+    o 'ABSTRACT'
+    o 'WITHSHARING'
+    o 'WITHOUTSHARING'
+    o 'OVERRIDE'
+    o 'TESTMETHOD'
+    o 'STATIC'
+    o 'FINAL'
+    o 'TRANSIENT'
+    o 'ANNOTATION', '{ annotation: yytext }'
+    o 'ANNOTATION \'(\' identifier \'=\' value \')\'', '{ annotation: yytext, option: $identifier, value: $value }'
+  ]
+
 compileAlternative = (alt) ->
   """
   #{alt[0]}
@@ -42,5 +69,4 @@ compile = ->
     result += '\n ;\n'
   results.join '\n'
 
-module.exports =
-  compile: compile
+console.log compile()
