@@ -1,49 +1,51 @@
 digit                   [0-9]
 id                      [a-zA-Z][a-zA-Z0-9_]*
 
+%options case-insensitive
+
 %%
 "//".*                  /* ignore comment */
 "/*"(\n|\r|.)*?"*/"         /* ignore block comment */
 "'"(\\\')?(\n|([^\\]|[^\\]\\\\)\\\'|[^'])*"'"   return 'STRLITERAL';
 "["(\t|\n|[ ])*([sS][eE][lL][eE][cC][tT])[^\]]*"]"  return 'IDENTIFIER';
-[pP]"ublic"                return 'PUBLIC';
-[pP]"rivate"               return 'PRIVATE';
-[pP]"rotected"             return 'PROTECTED';
-[gG]"lobal"                return 'GLOBAL';
-[aA]"bstract"              return 'ABSTRACT';
-[vV]"irtual"               return 'VIRTUAL';
-[oO]"verride"              return 'OVERRIDE';
-[tT]"est"[mM]"ethod"            return 'TESTMETHOD';
-[sS]"tatic"                return 'STATIC';
-[fF]"inally"               return 'FINALLY';
-[fF][iI][nN][aA][lL]                 return 'FINAL';
-[tT]"ransient"             return 'TRANSIENT';
-[wW]"ith"\s+[sS]"haring"      return 'WITHSHARING';
-[wW]"ithout"\s+[sS]"haring"   return 'WITHOUTSHARING';
-[cC]"lass"                 return 'CLASS';
-[iI]"mplements"            return 'IMPLEMENTS';
-[eE]"xtends"               return 'EXTENDS';
-[tT]"rue"                  return 'TRUE';
-[fF]"alse"                 return 'FALSE';
-[nN]"ull"                  return 'NULL';
-[bB]"reak"                 return 'BREAK';
-[cC]"ontinue"              return 'CONTINUE';
-[rR]"eturn"                return 'RETURN';
-[tT]"ry"                   return 'TRY';
-[cC]"atch"                 return 'CATCH';
-[tT]"hrow"                 return 'THROW';
-[iI][fF]                    return 'IF';
-[eE]"lse"                  return 'ELSE';
-[wW]"hile"                 return 'WHILE';
-[dD]"o"                    return 'DO';
-[fF]"or"                   return 'FOR';
-[nN]"ew"                   return 'NEW';
-[iI]"nsert"                return 'INSERT';
-[uU]"pdate"                return 'UPDATE';
-[dD]"elete"                return 'DELETE';
-[uU]"ndelete"              return 'UNDELETE';
-[mM]"erge"                 return 'MERGE';
-[uU]"psert"                return 'UPSERT';
+"public"                return 'PUBLIC';
+"private"               return 'PRIVATE';
+"protected"             return 'PROTECTED';
+"global"                return 'GLOBAL';
+"abstract"              return 'ABSTRACT';
+"virtual"               return 'VIRTUAL';
+"override"              return 'OVERRIDE';
+"testMethod"            return 'TESTMETHOD';
+"static"                return 'STATIC';
+"finally"               return 'FINALLY';
+"final"                 return 'FINAL';
+"transient"             return 'TRANSIENT';
+"with"\s+"sharing"      return 'WITHSHARING';
+"without"\s+"sharing"   return 'WITHOUTSHARING';
+"class"                 return 'CLASS';
+"implements"            return 'IMPLEMENTS';
+"extends"               return 'EXTENDS';
+"true"                  return 'TRUE';
+"false"                 return 'FALSE';
+"null"                  return 'NULL';
+"break"                 return 'BREAK';
+"continue"              return 'CONTINUE';
+"return"                return 'RETURN';
+"try"                   return 'TRY';
+"catch"                 return 'CATCH';
+"throw"                 return 'THROW';
+"if"                    return 'IF';
+"else"                  return 'ELSE';
+"while"                 return 'WHILE';
+"do"                    return 'DO';
+"for"                   return 'FOR';
+"new"                   return 'NEW';
+"insert"                return 'INSERT';
+"update"                return 'UPDATE';
+"delete"                return 'DELETE';
+"undelete"              return 'UNDELETE';
+"merge"                 return 'MERGE';
+"upsert"                return 'UPSERT';
 "||"                    return '||';
 "&&"                    return '&&';
 ";"                     return ';';

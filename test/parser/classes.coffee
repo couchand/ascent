@@ -11,6 +11,9 @@ parses = (str) ->
   catch error
     no
 
+assert parses('PUBLIC CLASS foo {}'),
+  'parsing should be case-insensitive'
+
 # visibility
 
 assert parses('public class Foo {}'),
