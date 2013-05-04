@@ -14,6 +14,9 @@ parses = (str) ->
 assert parses('PUBLIC CLASS foo {}'),
   'parsing should be case-insensitive'
 
+assert parses('trigger AccountTrigger on Account (before insert, before update){}'),
+  'triggers should parse'
+
 # visibility
 
 assert parses('public class Foo {}'),

@@ -5,6 +5,8 @@
 file
  : cls EOF
    { return $cls; }
+ | trg EOF
+   { return $trg; }
  ;
 
 cls
@@ -12,9 +14,49 @@ cls
    { $$ = $class_header; $$.body = $class_body; }
  ;
 
+trg
+ : trigger_header trigger_body
+   { $$ = $trigger_header; $$.body = $trigger_body; }
+ ;
+
 class_header
  : modifiers CLASS identifier class_taxonomy
    { $$ = { name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
+ ;
+
+trigger_header
+ : TRIGGER identifier ON identifier '(' ')'
+   { $$ = { name: $identifier1, trigger_object: $identifier2, conditions: [] }; }
+ | TRIGGER identifier ON identifier '(' trigger_conditions ')'
+   { $$ = { name: $identifier1, trigger_object: $identifier2, conditions: $trigger_conditions }; }
+ ;
+
+trigger_body
+ : block_statements
+ ;
+
+trigger_conditions
+ : trigger_condition
+   { $$ = []; }
+ | trigger_conditions ',' trigger_condition
+   { $$ = $trigger_conditions; $$.push( $trigger_condition ); }
+ ;
+
+trigger_condition
+ : trigger_time trigger_op
+   { $$ = { time: $trigger_time, op: $trigger_op }; }
+ ;
+
+trigger_time
+ : BEFORE
+ | AFTER
+ ;
+
+trigger_op
+ : INSERT
+ | UPDATE
+ | DELETE
+ | UNDELETE
  ;
 
 inner_cls

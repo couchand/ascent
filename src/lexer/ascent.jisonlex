@@ -25,6 +25,10 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "class"                 return 'CLASS';
 "implements"            return 'IMPLEMENTS';
 "extends"               return 'EXTENDS';
+"trigger"               return 'TRIGGER';
+"on"                    return 'ON';
+"before"                return 'BEFORE';
+"after"                 return 'AFTER';
 "true"                  return 'TRUE';
 "false"                 return 'FALSE';
 "null"                  return 'NULL';
