@@ -14,3 +14,6 @@ coffee test/parser/strings.coffee
 coffee test/parser/statements.coffee
 coffee test/parser/expressions.coffee
 coffee test/parser/collections.coffee
+coffee test/parser/runas.coffee
+
+./parseAll test/classes/*

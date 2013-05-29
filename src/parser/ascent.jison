@@ -258,6 +258,8 @@ statement
    { $$ = { expression: $postfix_expression, statement: 'postfix' }; }
  | method_call ';'
    { $$ = { expression: $method_call, statement: 'method call' }; }
+ | run_as_block
+   { $$ = { expression: $run_as_block, statement: 'runAs' }; }
  | dml_statement
    { $$ = $dml_statement; $$.statement = 'dml'; }
  ;
@@ -572,6 +574,11 @@ array_access
 method_call
  : primary_no_parens '(' arg_list ')'
    { $$ = { callee: $primary_no_parens, argv: $arg_list }; }
+ ;
+
+run_as_block
+ : primary_no_parens '(' arg_list ')' block_statements
+   { $$ = { callee: $primary_no_parens, argv: $arg_list, block: $block_statements }; }
  ;
 
 arg_list
