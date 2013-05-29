@@ -7,7 +7,7 @@ id                      [a-zA-Z][a-zA-Z0-9_]*
 "//".*                  /* ignore comment */
 "/*"(\n|\r|.)*?"*/"         /* ignore block comment */
 "'"(\\\')?(\n|([^\\]|[^\\]\\\\)\\\'|[^'])*"'"   return 'STRLITERAL';
-"["(\t|\n|[ ])*([sS][eE][lL][eE][cC][tT])[^\]]*"]"  return 'IDENTIFIER';
+"["(\t|\n|[ ])*([sS][eE][lL][eE][cC][tT])[^\]]*"]"  return 'IDENTIFIER'; /* a.k.a. the SOQL hack */
 "public"                return 'PUBLIC';
 "private"               return 'PRIVATE';
 "protected"             return 'PROTECTED';
