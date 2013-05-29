@@ -37,7 +37,6 @@ outstanding items
  * typecasting
  * soql/sosl
  * enums
- * compound declarations
 
 dev dependencies
 ----------------

@@ -46,6 +46,11 @@ assert parses('Integer i = 42;'), 'initializers should parse'
 assert parses('final Integer i;'), 'final declarations should parse'
 assert parses('final Integer i = 42;'), 'final initializers should parse'
 
+assert parses('Integer i, j;'), 'compound declarations should parse'
+assert parses('Integer i = 42, j;'), 'compound initializers should parse'
+assert parses('Integer i = 45, j = 43;'), 'compound initializers should parse'
+assert parses('final Integer i, j = 54;'), 'final compound declarations should parse'
+
 # if
 
 assert parses('if (true) ;'), 'simple if statements should parse'

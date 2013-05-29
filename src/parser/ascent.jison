@@ -414,10 +414,17 @@ declaration_statement
  ;
 
 declaration
- : identifier declarator
-   { $$ = $declarator; $$.type = $identifier; }
- | collection_type declarator
-   { $$ = $declarator; $$.type = $collection_type; }
+ : identifier declarators
+   { $$ = { vars: $declarators, type: $identifier }; }
+ | collection_type declarators
+   { $$ = { vars: $declarators, type: $collection_type }; }
+ ;
+
+declarators
+ : declarator
+   { $$ = [$declarator]; }
+ | declarators ',' declarator
+   { $$ = $declarators; $$.unshift($declarator); }
  ;
 
 declarator
