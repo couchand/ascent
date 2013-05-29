@@ -38,7 +38,6 @@ outstanding items
  * soql/sosl
  * enums
  * compound declarations
- * system.runas
 
 dev dependencies
 ----------------
