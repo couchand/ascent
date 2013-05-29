@@ -46,6 +46,14 @@ these are the main apex features to address.
 
  * true case-insensitivity
  * enums
+ * map initializers
+ * array indexing
+ * parens/typecasting is still wonky
+ * final method params
+ * for loops with collection type params
+ * instanceof
+ * reserved words as class names (thx sfdc)
+ * interface
 
 parses, but needs semantics.
 
