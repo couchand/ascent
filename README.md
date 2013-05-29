@@ -54,7 +54,7 @@ these are the main apex features to address.
  * reserved words as class names (thx sfdc)
  * interface
 
-parses, but needs semantics.
+parses with a hack, but needs semantics.
 
  * soql/sosl
 
