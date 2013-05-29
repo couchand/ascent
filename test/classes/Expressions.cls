@@ -9,4 +9,9 @@ public class Expressions
                 everything == 'a lot' ? 5 > 4 == 4 > 5 :
                   ++i;
     }
+
+    public Integer downcastInteger( Object source )
+    {
+        return (Integer)source;
+    }
 }

@@ -33,11 +33,11 @@ parse status
 
 running on a sampling of client code.
 
-    Successfully parsed 71 out of 122
-    Successfully parsed 42 out of 73
-    Successfully parsed 38 out of 66
-    Successfully parsed 138 out of 196
-    Successfully parsed 36 out of 55
+    Successfully parsed 79 out of 122
+    Successfully parsed 47 out of 73
+    Successfully parsed 43 out of 66
+    Successfully parsed 153 out of 196
+    Successfully parsed 40 out of 55
 
 outstanding items
 -----------------
@@ -45,7 +45,6 @@ outstanding items
 these are the main apex features to address.
 
  * true case-insensitivity
- * typecasting
  * enums
 
 parses, but needs semantics.

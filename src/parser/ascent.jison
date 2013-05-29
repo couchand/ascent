@@ -520,6 +520,8 @@ expression1
    { $$ = $prefix_expression; }
  | postfix_expression
    { $$ = $postfix_expression; }
+ | typecast_expression
+   { $$ = $typecast_expression; }
  | expression0
    { $$ = $expression0; }
  ;
@@ -692,6 +694,11 @@ prefix_expression
 postfix_expression
  : primary postfix_operator
    { $$ = { postfix: $postfix_operator, expression: $primary }; }
+ ;
+
+typecast_expression
+ : parenthesized_expression expression
+   { $$ = { typecast: $parenthesized_expression.parenthesized, expression: $expression }; }
  ;
 
 prefix_operator
