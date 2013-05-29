@@ -74,6 +74,7 @@ assert parses('for( ; true; ) ;'), 'for conditions should parse'
 assert parses('for( ;; false ) ;'), 'for increments should parse'
 
 assert parses('for( Integer i : listOfNumbers ) ;'), 'list for loops should parse'
+assert parses('for( List<Integer> i : listOfListsOfNumbers ) ;'), 'list for loops with collection parameters should parse'
 
 # try/catch
 

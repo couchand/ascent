@@ -34,9 +34,9 @@ parse status
 running on a sampling of client code.
 
     Successfully parsed 79 out of 122
-    Successfully parsed 47 out of 73
+    Successfully parsed 48 out of 73
     Successfully parsed 43 out of 66
-    Successfully parsed 153 out of 196
+    Successfully parsed 154 out of 196
     Successfully parsed 40 out of 55
 
 outstanding items
@@ -50,7 +50,6 @@ these are the main apex features to address.
  * array indexing
  * parens/typecasting is still wonky
  * final method params
- * for loops with collection type params
  * instanceof
  * reserved words as class names (thx sfdc)
  * interface

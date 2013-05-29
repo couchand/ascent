@@ -345,6 +345,8 @@ for_statement
    { $$ = { initializer: $for_initializer, condition: $for_condition, increment: $for_increment,  block: $statement }; }
  | FOR '(' identifier identifier ':' expression ')' statement
    { $$ = { iterator: { name: $identifier2, type: $identifier1 }, domain: $expression, block: $statement }; }
+ | FOR '(' collection_type identifier ':' expression ')' statement
+   { $$ = { iterator: { name: $identifier, type: $collection_type }, domain: $expression, block: $statement }; }
  ;
 
 for_initializer
