@@ -1,7 +1,9 @@
 ascent parser
 =============
 
-ascent is a language similar to apex.
+ascent is a language similar to apex.  it is significantly
+more permissive than apex, with the goal of enabling
+helpful error messages and debugging info.
 
  * introduction
  * parse status
@@ -24,8 +26,12 @@ ascent = require('./dst/ascent.js');
 var ast = ascent.parse(src_file);
 ```
 
+take a look at the (admittedly sketchy) tests for examples.
+
 parse status
 ------------
+
+running on a sampling of client code.
 
     Successfully parsed 71 out of 122
     Successfully parsed 42 out of 73
@@ -36,10 +42,15 @@ parse status
 outstanding items
 -----------------
 
+these are the main apex features to address.
+
  * true case-insensitivity
  * typecasting
- * soql/sosl
  * enums
+
+parses, but needs semantics.
+
+ * soql/sosl
 
 dev dependencies
 ----------------
