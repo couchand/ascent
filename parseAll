@@ -19,7 +19,6 @@ main = (argv) ->
     continue unless name
     attempts++
     cls = fs.readFileSync(file).toString()
-    console.log "now parsing #{name}"
     try
       p.parse cls
       successes++
