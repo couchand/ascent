@@ -1,10 +1,13 @@
 # make ascent package
 
-all: cleaner parser nodes package
+all: cleaner parser nodes package tests
 cleaner: dst/cleaner.js
 parser: dst/parser.js
 nodes: dst/nodes.js
 package: dst/ascent.js
+
+tests:
+	./runTests
 
 dst/cleaner.js: src/cleaner/cleaner.coffee
 	coffee -c -o dst src/cleaner/cleaner.coffee
