@@ -11,11 +11,7 @@ file
 
 cls
  : modifiers CLASS identifier class_taxonomy class_body
-   { $$ = new yy.ApexClass( $identifier );
-     $$.modifiers = $modifiers;
-     $$.implements = $class_taxonomy.implements;
-     $$.extends = $class_taxonomy.extends;
-     $$.body = $class_body; }
+   { $$ = new yy.ApexClass( $identifier, $modifiers, $class_taxonomy, $class_body ); }
  ;
 
 trg
