@@ -44,7 +44,6 @@ outstanding items
 
 these are the main apex features to address.
 
- * true case-insensitivity
  * enums
  * map initializers
  * array indexing
