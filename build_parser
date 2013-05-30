@@ -19,6 +19,8 @@ echo "> patch dst/parser.js cli.patch"
 patch dst/parser.js cli.patch
 
 echo "building package"
+echo "> coffee -c -o dst src/nodes.coffee"
+coffee -c -o dst src/nodes.coffee
 echo "> coffee -c -o dst src/ascent.coffee"
 coffee -c -o dst src/ascent.coffee
 

@@ -1,6 +1,6 @@
 # class parsing tests
 
-p = require '../../dst/ascent.js'
+p = require '../../dst/ascent'
 
 assert = (val, msg) ->
   throw new Error msg if !val
@@ -11,8 +11,12 @@ parses = (str) ->
   catch error
     no
 
-assert parses('PUBLIC CLASS foo {}'),
+cased_class = 'PUBLIC CLASS foo {}'
+assert parses(cased_class),
   'parsing should be case-insensitive'
+cased_class_parsed = p.parse cased_class
+assert cased_class_parsed instanceof p.ApexClass,
+  'root node should be class type'
 
 assert parses('trigger AccountTrigger on Account (before insert, before update){}'),
   'triggers should parse'

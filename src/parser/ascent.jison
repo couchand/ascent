@@ -10,18 +10,17 @@ file
  ;
 
 cls
- : class_header class_body
-   { $$ = $class_header; $$.body = $class_body; }
+ : modifiers CLASS identifier class_taxonomy class_body
+   { $$ = new yy.ApexClass( $identifier );
+     $$.modifiers = $modifiers;
+     $$.implements = $class_taxonomy.implements;
+     $$.extends = $class_taxonomy.extends;
+     $$.body = $class_body; }
  ;
 
 trg
  : trigger_header trigger_body
    { $$ = $trigger_header; $$.body = $trigger_body; }
- ;
-
-class_header
- : modifiers CLASS identifier class_taxonomy
-   { $$ = { name: $identifier, modifiers: $modifiers, implements: $class_taxonomy.implements, extends: $class_taxonomy.extends }; }
  ;
 
 trigger_header
