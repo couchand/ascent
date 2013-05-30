@@ -1,6 +1,9 @@
 // Examples of collections support.
 public class Collections
 {
+    /* this is a comment
+    this.would(cause + a + parse + )()()()() erororor *&*&*%
+    */
     public static List<String> goodNames = new List<String>{ 'Jeff', 'Bill', 'Tom' };
 
     public static Set<Integer> goodNumbers = new Set<Integer>{ 1, 2, 3, 4, 5, 6 };
