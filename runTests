@@ -17,4 +17,6 @@ coffee test/parser/collections.coffee
 coffee test/parser/runas.coffee
 coffee test/parser/typecast.coffee
 
+coffee test/nodes/classes.coffee
+
 ./parseAll test/classes/*

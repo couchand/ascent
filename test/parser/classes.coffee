@@ -11,12 +11,8 @@ parses = (str) ->
   catch error
     no
 
-cased_class = 'PUBLIC CLASS foo {}'
-assert parses(cased_class),
+assert parses('PUBLIC CLASS foo {}'),
   'parsing should be case-insensitive'
-cased_class_parsed = p.parse cased_class
-assert cased_class_parsed instanceof p.ApexClass,
-  'root node should be class type'
 
 assert parses('trigger AccountTrigger on Account (before insert, before update){}'),
   'triggers should parse'
